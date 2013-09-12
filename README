@@ -1,0 +1,19 @@
+Must clone add import this project to repo.  Then include project as a library. 
+
+https://github.com/JakeWharton/NineOldAndroids/
+
+
+Access Key for Weather API
+jsrkcyrwcx4w2fjjsknwzg2c
+
+Must clone and import Volley Library Project.  
+git clone https://android.googlesource.com/platform/frameworks/volley
+	*Must set Volley as an android library project
+	
+Must get gson, android library to convert JSON to objects ,
+https://code.google.com/p/google-gson/downloads/list
+
+Will Need the jar file (ImageLoader) for loading images from a URL
+https://code.google.com/p/libs-for-android/wiki/ImageLoader
+
+

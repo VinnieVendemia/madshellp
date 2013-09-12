@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="hot_red">#E3170D</color>
+    <color name="mid_heat">#FA8072</color>
+    <color name="mid_cool">#ADEAEA</color>
+    <color name="cold_blue">#00688B</color>
+</resources>

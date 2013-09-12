@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/trivia_background"
+    android:orientation="vertical"
+     >
+
+    
+    <TableRow
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center" >
+        
+        
+        
+        
+    </TableRow>
+
+    <TableRow android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/imageButton5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/settings" />
+
+        <Button
+            android:id="@+id/Bstart"
+            android:background="@drawable/start"
+            android:onClick="takeQuiz" />
+    </TableRow>
+
+</TableLayout>
