@@ -1495,6 +1495,7 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f08000e;
         public static final int google_maps_debug_key=0x7f080027;
+        public static final int google_maps_release_key=0x7f080028;
         public static final int hello_world=0x7f080026;
         public static final int title_activity_weather=0x7f080025;
         public static final int weather_access_key=0x7f080024;

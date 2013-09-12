@@ -22,6 +22,7 @@
     <string name="weather_access_key">jsrkcyrwcx4w2fjjsknwzg2c</string>
     <string name="title_activity_weather">WeatherActivity</string>
     <string name="hello_world">Hello world!</string>
-    <string name="google_maps_debug_key">AIzaSyAeSLL1yzl5MNPBFNOdCduQS4EN2bOBtNM</string>
+    <string name="google_maps_debug_key">AIzaSyBNKj2IKXAd226V4xxCVO-QGBbfFg63uQA</string>
+    <string name="google_maps_release_key">AIzaSyDrLL8HDYeSbDu-rzCO6bG56Hx84ARPvCI</string>
 
 </resources>

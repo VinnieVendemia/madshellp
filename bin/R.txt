@@ -479,6 +479,7 @@ int string common_google_play_services_update_title 0x7f080007
 int string common_signin_button_text 0x7f08000d
 int string common_signin_button_text_long 0x7f08000e
 int string google_maps_debug_key 0x7f080027
+int string google_maps_release_key 0x7f080028
 int string hello_world 0x7f080026
 int string title_activity_weather 0x7f080025
 int string weather_access_key 0x7f080024
