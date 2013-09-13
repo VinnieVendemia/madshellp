@@ -1,5 +1,6 @@
 package com.mobileappdevelopersclub.shellp;
 
+import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,7 +27,8 @@ public class MainActivity extends ActionBarActivity {
 	JazzyViewPager mJazzy;
 	ShellpFragmentPagerAdapter mPagerAdapter;
 	ActionBar actionBar;
-	
+	private PullToRefreshAttacher mPullToRefreshAttacher;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,8 +37,8 @@ public class MainActivity extends ActionBarActivity {
 		actionBar = getSupportActionBar();
 		mPagerAdapter = new ShellpFragmentPagerAdapter(getSupportFragmentManager());
 		setupJazziness(TransitionEffect.Tablet);
-		
-		
+		mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
+
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Create a tab listener that is called when the user changes tabs.
@@ -56,7 +58,7 @@ public class MainActivity extends ActionBarActivity {
 
 		// Add 3 tabs, specifying the tab's text and TabListener
 		for (int i = 0; i < 4; i++) {
-			
+
 			switch(i) {
 			case 0:
 				actionBar.addTab(actionBar.newTab().setText("Map").setTabListener(tabListener));
@@ -74,14 +76,18 @@ public class MainActivity extends ActionBarActivity {
 				//Do Nothing, Should never occur
 				break;
 			}
-			
+
 		}
-		
 
 
 
 
 
+
+	}
+
+	public PullToRefreshAttacher getPullToRefreshAttacher() {
+		return mPullToRefreshAttacher;
 	}
 
 	@Override
@@ -123,25 +129,25 @@ public class MainActivity extends ActionBarActivity {
 		public CharSequence getPageTitle(int position) {
 			return "OBJECT " + (position + 1);
 		}
-		
+
 		@Override
 		public boolean isViewFromObject(View view, Object object) {
-		    if(object != null){
-		        return ((Fragment)object).getView() == view;
-		    }else{
-		        return false;
-		    }
+			if(object != null){
+				return ((Fragment)object).getView() == view;
+			}else{
+				return false;
+			}
 		}
-		
+
 		@Override
-	    public Object instantiateItem(ViewGroup container, final int position) {
-	        Object obj = super.instantiateItem(container, position);
-	        mJazzy.setObjectForPosition(obj, position);
-	        return obj;
-	    }
+		public Object instantiateItem(ViewGroup container, final int position) {
+			Object obj = super.instantiateItem(container, position);
+			mJazzy.setObjectForPosition(obj, position);
+			return obj;
+		}
 
 	}
-	
+
 	private void setupJazziness(TransitionEffect effect) {
 		mJazzy = (JazzyViewPager) findViewById(R.id.pager);
 		mJazzy.setTransitionEffect(effect);
