@@ -11,7 +11,6 @@ import com.mobileappdevelopersclub.shellp.MainActivity.ShellpFragmentPagerAdapte
 import com.mobileappdevelopersclub.shellp.ui.AboutUsFragment;
 import com.mobileappdevelopersclub.shellp.ui.HomeTriviaFragment;
 import com.mobileappdevelopersclub.shellp.ui.MainFragment;
-import com.mobileappdevelopersclub.shellp.ui.MapFragment;
 import com.mobileappdevelopersclub.shellp.ui.TriviaEndFragment;
 import com.mobileappdevelopersclub.shellp.ui.TriviaGameFrag;
 import com.mobileappdevelopersclub.shellp.ui.TriviaQuestionFragment;
