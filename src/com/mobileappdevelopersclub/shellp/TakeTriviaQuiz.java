@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.mobileappdevelopersclub.shellp.Questions;
 import com.mobileappdevelopersclub.shellp.MainActivity.ShellpFragmentPagerAdapter;
 import com.mobileappdevelopersclub.shellp.ui.AboutUsFragment;
 import com.mobileappdevelopersclub.shellp.ui.HomeTriviaFragment;
@@ -30,6 +31,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,15 +40,18 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-public class TakeTriviaQuiz extends ActionBarActivity{
 
+
+public class TakeTriviaQuiz extends ActionBarActivity{
+	
+	public final String tag = "TakeTriviaQuiz";
 	JazzyViewPager mJazzy;
 	ShellpFragmentPagerAdapter mPagerAdapter;
 	ActionBar actionBar;
 
 	//**************************
 	// Trivia Game Variables
-	ArrayList < Questions > list ;
+	public ArrayList < Questions > list ;
     ArrayList <Questions> tempList, tempListCopy;
     private int count,correct;
     RadioButton rBtn0,rBtn1,rBtn2,rBtn3, temp;
@@ -103,7 +108,22 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 //
 //        RDG1.clearCheck() ; // clear the default selection of  first radio button in radio group
 
-
+		try {
+			list = PlayWithRawFiles();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// Prints out questions in logcat
+		/*
+		for (int i = 0; i < list.size(); i++){
+			Log.d(tag, list.get(i).getQuestion());
+			
+			
+		}*/
+		
+		
         //**************************************************
 		//
 		// Create a tab listener that is called when the user changes tabs.
@@ -216,7 +236,7 @@ public class TakeTriviaQuiz extends ActionBarActivity{
      *
      **********************************************************************************************/
    
-    public void PlayWithRawFiles() throws IOException {  
+    public ArrayList<Questions> PlayWithRawFiles() throws IOException {  
     		ArrayList < Questions > list ; // might be able to move to class declaration/instantiation
 
     		String  delims = "[~]";
@@ -235,11 +255,11 @@ public class TakeTriviaQuiz extends ActionBarActivity{
                             list.add(newQuestion);
                     }                              
             }              
-            is.close();    
+            is.close();
+            
+            return list;
     }
-
-	
-	
+    
 }
 
 
