@@ -2,6 +2,7 @@ package com.mobileappdevelopersclub.shellp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +15,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.mobileappdevelopersclub.shellp.R;
 
 public class MapFragment extends Fragment {
 	
@@ -33,6 +33,7 @@ public class MapFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
 	}
 
 	@Override
@@ -41,6 +42,7 @@ public class MapFragment extends Fragment {
 		super.onCreateView(inflater, container, savedInstanceState);
 		view = inflater.inflate(R.layout.map_fragment,  container, false);
 		//((TextView)view.findViewById(R.id.textView1)).setText("Dylan is awesome, this is the new triv frag and it swipes really cool");
+		setUpMapIfNeeded();
 		return view;
 	}
 	
@@ -50,7 +52,7 @@ public class MapFragment extends Fragment {
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		setUpMapIfNeeded();
+		
 	}
 	
 	
@@ -83,12 +85,14 @@ public class MapFragment extends Fragment {
 
 
 		if (mMap == null) {
+			FragmentManager ff = Globals.mgr;
+			SupportMapFragment mf = ((SupportMapFragment) Globals.mgr.findFragmentById(R.id.map));
 			mMap = ((SupportMapFragment) Globals.mgr.findFragmentById(R.id.map)).getMap();
-//			setUpMap();
+			setUpMap();
 		} else {
 			mMap = ((SupportMapFragment) Globals.mgr.findFragmentById(R.id.map)).getMap();
 			mMap.clear();
-//			setUpMap();
+			setUpMap();
 		}
 
 	}
