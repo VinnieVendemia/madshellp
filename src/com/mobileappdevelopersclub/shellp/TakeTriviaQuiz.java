@@ -67,7 +67,7 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.trivia_home_fragment);
 		
 		//*************************************************
 		// Fragment Navigation
@@ -80,28 +80,28 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 		//*************************************************
 		// Trivia Game Content
 		
-		question = (TextView) findViewById(R.id.view);
-
-        //Sets the font of the question
-        question.setTypeface(font);
-        display = (TextView) findViewById(R.id.display);
-
-        submit= (Button) findViewById(R.id.button1);
-        submit.setText("Submit");      
-        RDG1 =(RadioGroup)findViewById(R.id.radioGroup1);
-
-        rBtn0 = (RadioButton) findViewById(R.id.radio0);
-        rBtn1 = (RadioButton) findViewById(R.id.radio1);
-        rBtn2 = (RadioButton) findViewById(R.id.radio2);
-        rBtn3 = (RadioButton) findViewById(R.id.radio3);
-
-        //Sets the font of the buttons
-        rBtn0.setTypeface(font);
-        rBtn1.setTypeface(font);
-        rBtn2.setTypeface(font);
-        rBtn3.setTypeface(font);
-
-        RDG1.clearCheck() ; // clear the default selection of  first radio button in radio group
+//		question = (TextView) findViewById(R.id.view);
+//
+//        //Sets the font of the question
+//        question.setTypeface(font);
+//        display = (TextView) findViewById(R.id.display);
+//
+//        submit= (Button) findViewById(R.id.button1);
+//        submit.setText("Submit");      
+//        RDG1 =(RadioGroup)findViewById(R.id.radioGroup1);
+//
+//        rBtn0 = (RadioButton) findViewById(R.id.radio0);
+//        rBtn1 = (RadioButton) findViewById(R.id.radio1);
+//        rBtn2 = (RadioButton) findViewById(R.id.radio2);
+//        rBtn3 = (RadioButton) findViewById(R.id.radio3);
+//
+//        //Sets the font of the buttons
+//        rBtn0.setTypeface(font);
+//        rBtn1.setTypeface(font);
+//        rBtn2.setTypeface(font);
+//        rBtn3.setTypeface(font);
+//
+//        RDG1.clearCheck() ; // clear the default selection of  first radio button in radio group
 
 
         //**************************************************

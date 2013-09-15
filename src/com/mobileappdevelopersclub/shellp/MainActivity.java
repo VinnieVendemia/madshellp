@@ -57,7 +57,7 @@ public class MainActivity extends ActionBarActivity {
 		};
 
 		// Add 3 tabs, specifying the tab's text and TabListener
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 3; i++) {
 
 			switch(i) {
 			case 0:
@@ -69,11 +69,8 @@ public class MainActivity extends ActionBarActivity {
 			case 2: 
 				actionBar.addTab(actionBar.newTab().setText("Weather").setTabListener(tabListener));
 				break;
-			case 3: 
-				actionBar.addTab(actionBar.newTab().setText("About Us").setTabListener(tabListener));
-				break;
 			default: 
-				//Do Nothing, Should never occur
+				//Do Nothing, Should never reach here
 				break;
 			}
 
@@ -106,15 +103,14 @@ public class MainActivity extends ActionBarActivity {
 		@Override
 		public Fragment getItem(int i) {
 			Fragment fragment; 
-			if(i == 1 ) {
-				fragment = TriviaGameFrag.newInstance(i);
-			} else if (i == 0){
+			if(i == 0 ) {
 				fragment = MapFragment.newInstance(i);
+			} else if (i == 1){
+				fragment = TriviaGameFrag.newInstance(i);
 			} else if (i == 2){
-				fragment = AboutUsFragment.newInstance(i);
-			} else if (i == 3){
 				fragment = WeatherFragment.newInstance(i);
-			} else {
+			}  else {
+				//Should never reach here, but safety check 
 				fragment = MainFragment.newInstance(i);
 			}
 			return fragment;
@@ -122,7 +118,7 @@ public class MainActivity extends ActionBarActivity {
 
 		@Override
 		public int getCount() {
-			return 4;
+			return 3;
 		}
 
 		@Override

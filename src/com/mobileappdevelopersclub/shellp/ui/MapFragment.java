@@ -44,6 +44,15 @@ public class MapFragment extends Fragment {
 		return view;
 	}
 	
+	
+	
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		setUpMapIfNeeded();
+	}
+
 	private void setUpMapIfNeeded() {
 		// Do a null check to confirm that we have not already instantiated the map.
 
@@ -58,11 +67,11 @@ public class MapFragment extends Fragment {
 
 		if (mMap == null) {
 			mMap = ((SupportMapFragment) Globals.mgr.findFragmentById(R.id.map)).getMap();
-			setUpMap();
+//			setUpMap();
 		} else {
 			mMap = ((SupportMapFragment) Globals.mgr.findFragmentById(R.id.map)).getMap();
 			mMap.clear();
-			setUpMap();
+//			setUpMap();
 		}
 
 	}
