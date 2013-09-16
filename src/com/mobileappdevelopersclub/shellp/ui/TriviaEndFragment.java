@@ -1,6 +1,10 @@
 package com.mobileappdevelopersclub.shellp.ui;
 
+import java.util.ArrayList;
+
+import com.mobileappdevelopersclub.shellp.Questions;
 import com.mobileappdevelopersclub.shellp.R;
+import com.mobileappdevelopersclub.shellp.TakeTriviaQuiz;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +16,9 @@ import android.widget.TextView;
 public class TriviaEndFragment extends Fragment {
 
 	int testInt;
+	ArrayList < Questions > questions ;
+	TextView result_text;
+
 	
 	public static TriviaEndFragment newInstance(int testInt) {
 		TriviaEndFragment fragment = new TriviaEndFragment();
@@ -23,6 +30,10 @@ public class TriviaEndFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		questions = ((TakeTriviaQuiz)getActivity()).list;
+
+		
+		
 	}
 
 	@Override
@@ -30,7 +41,19 @@ public class TriviaEndFragment extends Fragment {
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		View view = inflater.inflate(R.layout.trivia_end_fragment,  container, false);
-		//((TextView)view.findViewById(R.id.textView1)).setText("Dylan is awesome, this is the new triv frag and it swipes really cool");
+
+		result_text = (TextView) view.findViewById(R.id.TV1);
+		result_text.setText("Here is how you did psh.... :");
+		
+		for (int i = 0; i < questions.size(); i++){
+			result_text.append("Q:#"+i +" "+ questions.get(i).getQuestion()+ "\n");
+			result_text.append("USR A:" +" "+ questions.get(i).getUserAnswer() + "\n");
+			result_text.append("CRT A:" +" "+ questions.get(i).getCorrectAns() + "\n");
+		}
+		
+		
 		return view;
+		
+		
 	}	
 }
