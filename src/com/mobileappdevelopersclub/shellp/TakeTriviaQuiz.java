@@ -39,8 +39,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-
-
 public class TakeTriviaQuiz extends ActionBarActivity{
 	
 	public final String tag = "TakeTriviaQuiz";
@@ -62,7 +60,6 @@ public class TakeTriviaQuiz extends ActionBarActivity{
     int i = 0;
     Button submit;
     Random rgen = new Random();  // Random number generator
-    Typeface font;
     MediaPlayer sound;
 
 
@@ -132,7 +129,7 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 			}
 
 			public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-				// hide the given tab
+				
 			}
 
 			public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
@@ -141,11 +138,23 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 		};
 
 		// Add the number of tabs in the action bar
-		for (int i = 0; i < 11; i++) {
-			actionBar.addTab(
-					actionBar.newTab()
-					.setText("Question:  " + (i + 1))
-					.setTabListener(tabListener));
+		for (int i = 0; i <= 11; i++) {
+			if (i == 0){
+				actionBar.addTab(
+						actionBar.newTab()
+						.setText("Start")
+						.setTabListener(tabListener));
+			} else if (i == 11){
+				actionBar.addTab(
+						actionBar.newTab()
+						.setText("Results")
+						.setTabListener(tabListener));
+			} else {
+				actionBar.addTab(
+						actionBar.newTab()
+						.setText("Question:  " + (i))
+						.setTabListener(tabListener));
+			}
 		}
 	}
 
@@ -167,7 +176,7 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 			Fragment fragment; 
 			if (i == 0){
 				fragment = HomeTriviaFragment.newInstance(i);
-			} else if (i == 10){
+			} else if (i == 11){
 				fragment = TriviaEndFragment.newInstance(i);
 			} else {
 				fragment = TriviaQuestionFragment.newInstance(i);
@@ -177,7 +186,7 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 
 		@Override // Number of tabs and fragments
 		public int getCount() {
-			return 11;
+			return 12;
 		}
 
 		@Override

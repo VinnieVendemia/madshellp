@@ -5,6 +5,7 @@ import java.util.Random;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +20,12 @@ import com.mobileappdevelopersclub.shellp.TakeTriviaQuiz;
 
 public class TriviaQuestionFragment extends Fragment {
 
+	public final String tag = "TakeTriviaQuiz";
 	int testInt;
 	ArrayList < Questions > questions ;
 	TextView question;
-	
-	
+	View view;
+
 	RadioButton rBtn0,rBtn1,rBtn2,rBtn3, temp;
 	RadioGroup RDG1;
 	Random rgen = new Random();  // Random number generator
@@ -49,7 +51,7 @@ public class TriviaQuestionFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		View view = inflater.inflate(R.layout.question_fragment,  container, false);
+		view = inflater.inflate(R.layout.question_fragment,  container, false);
 
 
 		//*************************************************
@@ -75,21 +77,77 @@ public class TriviaQuestionFragment extends Fragment {
 		rBtn3 = (RadioButton) findViewById(R.id.radio3);
 
 		RDG1.clearCheck() ; // clear the default selection of  first radio button in radio group
-*/
+		 */
 		// Sets Question
 		question.setText(questions.get(testInt -1 ).getQuestion());
 
 		// Sets Answers
 		String[] answers = questions.get(testInt-1).getAnswers();		
-        rBtn0.setText(answers[0]);
-        rBtn0.setChecked(false); // by default the first radio button is selected, This is un-selecting the radio button
-        rBtn1.setText(answers[1]);
-        rBtn2.setText(answers[2]);
-        rBtn3.setText(answers[3]);
+		rBtn0.setText(answers[0]);
+		rBtn0.setChecked(false); // by default the first radio button is selected, This is un-selecting the radio button
+		rBtn1.setText(answers[1]);
+		rBtn2.setText(answers[2]);
+		rBtn3.setText(answers[3]);
 
-		
+
 
 		//((TextView)view.findViewById(R.id.textView1)).setText("Dylan is awesome, this is the new triv frag and it swipes really cool");
 		return view;
+	}
+
+	@Override
+	public void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		this.saveQuestionInfo();
+	}
+
+	/*@Override
+	public void onDestroyView() {
+		// TODO Auto-generated method stub
+		super.onDestroyView();
+
+		int id =  RDG1.getCheckedRadioButtonId();
+
+		// Manages answer when leaving the fragment
+		if (id != -1){
+			temp = (RadioButton) view.findViewById(id);
+
+			if (temp.getText() != null && temp.getText().equals(questions.get(testInt -1).getCorrectAns())){
+				questions.get(testInt -1).setAnswerdCorrectly(true);
+			}else {
+				questions.get(testInt -1).setAnswerdCorrectly(false);				
+			}
+
+			questions.get(testInt -1).setUserAnswer((String) temp.getText());
+			questions.get(testInt -1).setIsAnswerd(true);				
+
+		}
+
+		Log.d(tag, questions.get(testInt -1).getUserAnswer());
+
 	}	
+*/
+	public void saveQuestionInfo(){
+
+		int id = RDG1.getCheckedRadioButtonId();
+
+		// Manages answer when leaving the fragment
+		if (id != -1){
+			temp = (RadioButton) view.findViewById(id);
+
+			if (temp.getText() != null && temp.getText().equals(questions.get(testInt -1).getCorrectAns())){
+				questions.get(testInt -1).setAnswerdCorrectly(true);
+			}else {
+				questions.get(testInt -1).setAnswerdCorrectly(false);				
+			}
+
+			questions.get(testInt -1).setUserAnswer((String) temp.getText());
+			questions.get(testInt -1).setIsAnswerd(true);				
+
+		}
+
+		Log.d(tag, questions.get(testInt -1).getUserAnswer());
+
+	}
 }
