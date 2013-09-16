@@ -11,12 +11,16 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -30,12 +34,16 @@ import com.mobileappdevelopersclub.shellp.transactions.GMapV2Direction;
 
 public class MapFragment extends Fragment {
 	
+	//Constants 
 	static String TAG = "MapFragment";
+	private final double STAMP_LAT = 38.987568;
+	private final double STAMP_LONG = -76.944457;
 	
 	public static GoogleMap mMap;
 	View view;
-	private final double STAMP_LAT = 38.987568;
-	private final double STAMP_LONG = -76.944457;
+	EditText startLocation;
+	EditText endLocation;
+	ImageView searchIcon;
 	private Context mContext;
 	Location mUserLocation;
 	
@@ -57,8 +65,25 @@ public class MapFragment extends Fragment {
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		view = inflater.inflate(R.layout.map_fragment,  container, false);
-		//((TextView)view.findViewById(R.id.textView1)).setText("Dylan is awesome, this is the new triv frag and it swipes really cool");
+		
+		startLocation = (EditText)view.findViewById(R.id.start_location);
+		endLocation = (EditText)view.findViewById(R.id.end_location);
+		searchIcon = (ImageView)view.findViewById(R.id.search_icon);
+		searchIcon.setOnTouchListener(new OnTouchListener(){
 
+			@Override
+			public boolean onTouch(View arg0, MotionEvent arg1) {
+				String sLocation = startLocation.getText().toString();
+				String eLocation = endLocation.getText().toString();
+				
+				if(!TextUtils.isEmpty(sLocation) && !TextUtils.isEmpty(eLocation)) {
+					//TODO: Perform search
+				}
+				return false;
+			}
+			
+		});
+		
 		return view;
 	}
 	

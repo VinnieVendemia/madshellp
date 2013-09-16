@@ -25,4 +25,7 @@
     <string name="google_maps_debug_key">AIzaSyD5p05gH6VECvQSv7SQdbNZ1rUsjHCgyc4</string>
     <string name="google_maps_release_key">AIzaSyDp-x7OXSOnoUpGaygCHaX3qZ6U9-Be9Bc</string>
 
+    <string name="start_loc">Where are you now?</string>
+    <string name="end_loc">Where do you want to go?</string>
+    
 </resources>
