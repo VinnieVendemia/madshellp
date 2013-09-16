@@ -1,5 +1,14 @@
 package com.mobileappdevelopersclub.shellp;
 
+import java.util.ArrayList;
+
+import org.w3c.dom.Document;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,18 +23,24 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.mobileappdevelopersclub.shellp.transactions.GMapV2Direction;
+
 
 public class MapFragment extends Fragment {
 	
 	static String TAG = "MapFragment";
-	int testInt;
+	
 	public static GoogleMap mMap;
 	View view;
+	private final double STAMP_LAT = 38.987568;
+	private final double STAMP_LONG = -76.944457;
+	private Context mContext;
+	Location mUserLocation;
 	
 	public static MapFragment newInstance(int testInt) {
 		MapFragment fragment = new MapFragment();
-		fragment.testInt = testInt;
 		return fragment;
 	}
 	
@@ -33,7 +48,8 @@ public class MapFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		
+		mContext = getActivity();
+		new GetUserLocation().execute();
 	}
 
 	@Override
@@ -42,7 +58,7 @@ public class MapFragment extends Fragment {
 		super.onCreateView(inflater, container, savedInstanceState);
 		view = inflater.inflate(R.layout.map_fragment,  container, false);
 		//((TextView)view.findViewById(R.id.textView1)).setText("Dylan is awesome, this is the new triv frag and it swipes really cool");
-		setUpMapIfNeeded();
+
 		return view;
 	}
 	
@@ -52,7 +68,7 @@ public class MapFragment extends Fragment {
 	public void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		
+		setUpMapIfNeeded();
 	}
 	
 	
@@ -85,9 +101,7 @@ public class MapFragment extends Fragment {
 
 
 		if (mMap == null) {
-			FragmentManager ff = Globals.mgr;
-			SupportMapFragment mf = ((SupportMapFragment) Globals.mgr.findFragmentById(R.id.map));
-			mMap = ((SupportMapFragment) Globals.mgr.findFragmentById(R.id.map)).getMap();
+			mMap = ((SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 			setUpMap();
 		} else {
 			mMap = ((SupportMapFragment) Globals.mgr.findFragmentById(R.id.map)).getMap();
@@ -130,12 +144,9 @@ public class MapFragment extends Fragment {
 //		}
 
 		CameraUpdate center = null;
-		center=
-				CameraUpdateFactory.newLatLngBounds(new LatLngBounds( new LatLng(38.9806638 , -76.958377 ),
-						new LatLng(38.998875, -76.933100)), 200 );
-
+		center= CameraUpdateFactory.newLatLng(new LatLng(STAMP_LAT, STAMP_LONG));
 		
-		CameraUpdate zoom = CameraUpdateFactory.zoomTo(12);
+		CameraUpdate zoom = CameraUpdateFactory.zoomTo(18);
 		
 
 		if (center != null) {
@@ -145,5 +156,82 @@ public class MapFragment extends Fragment {
 		mMap.animateCamera(zoom);
 
 	}
+	
+	private void setUserLocationOnMap() {
+		CameraUpdate center = null;
+		center= CameraUpdateFactory.newLatLng(new LatLng(mUserLocation.getLatitude(),
+				mUserLocation.getLongitude()));			
+		
+		CameraUpdate zoom = CameraUpdateFactory.zoomTo(18);
+		
 
+		if (center != null) {
+			mMap.moveCamera(center);
+		}
+
+		mMap.animateCamera(zoom);
+		
+		mMap.addMarker(new MarkerOptions().position(
+				new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude())).title("ME"));
+
+		new GetDirections().execute();
+
+	}
+	
+	private class GetDirections extends AsyncTask<Void, Void, Void> {
+		
+		PolylineOptions rectLine;
+		
+		@Override
+		protected Void doInBackground(Void... params) {
+			LatLng fromPosition = new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude());
+			LatLng toPosition = new LatLng(STAMP_LAT, STAMP_LONG);
+
+			GMapV2Direction md = new GMapV2Direction();
+
+			Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_WALKING);
+			ArrayList<LatLng> directionPoint = md.getDirection(doc);
+			rectLine = new PolylineOptions().width(7).color(Color.RED);
+
+			for(int i = 0 ; i < directionPoint.size() ; i++) {          
+			rectLine.add(directionPoint.get(i));
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			setDirections(rectLine);
+		}
+		
+		
+		
+	}
+	
+	private void setDirections(PolylineOptions rectLine ) {
+		mMap.addPolyline(rectLine);
+	}
+	
+ 	
+	private class GetUserLocation extends AsyncTask<Void,Void,Void> {
+
+		@Override
+		protected Void doInBackground(Void... arg0) {
+			LocationManager locMgr = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
+			mUserLocation = locMgr.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			setUserLocationOnMap();
+		}
+		
+		
+		
+	}
+ 
 }
