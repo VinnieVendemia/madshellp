@@ -1213,7 +1213,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int Bstart=0x7f060056;
-        public static final int TV1=0x7f060064;
+        public static final int TV1=0x7f060068;
         public static final int accordion=0x7f06002a;
         public static final int action_bar=0x7f06002d;
         public static final int action_bar_activity_content=0x7f06001c;
@@ -1228,7 +1228,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f060042;
         public static final int action_mode_bar_stub=0x7f060041;
         public static final int action_mode_close_button=0x7f060035;
-        public static final int action_settings=0x7f06006e;
+        public static final int action_settings=0x7f060072;
         public static final int activity_chooser_view_content=0x7f060036;
         public static final int always=0x7f060013;
         public static final int beginning=0x7f060018;
@@ -1236,7 +1236,8 @@ containing a value of this type.
         public static final int collapseActionView=0x7f060015;
         public static final int cubein=0x7f060021;
         public static final int cubeout=0x7f060022;
-        public static final int date=0x7f060069;
+        public static final int date=0x7f06006d;
+        public static final int daysOfWeek=0x7f060066;
         public static final int default_activity_button=0x7f060039;
         public static final int dialog=0x7f060016;
         public static final int disableHome=0x7f060010;
@@ -1249,24 +1250,25 @@ containing a value of this type.
         public static final int expanded_menu=0x7f06003d;
         public static final int fliphorizontal=0x7f060024;
         public static final int flipvertical=0x7f060023;
-        public static final int header=0x7f060068;
+        public static final int header=0x7f06006c;
         public static final int home=0x7f06001b;
         public static final int homeAsUp=0x7f06000d;
         public static final int hybrid=0x7f060008;
         public static final int icon=0x7f06003b;
         public static final int ifRoom=0x7f060012;
         public static final int image=0x7f060038;
-        public static final int imageButton5=0x7f060065;
+        public static final int imageButton5=0x7f060069;
         public static final int left_icon=0x7f060044;
         public static final int listMode=0x7f060009;
         public static final int list_item=0x7f06003a;
-        public static final int main_weather=0x7f06006a;
+        public static final int main_weather=0x7f06006e;
         public static final int map=0x7f06005c;
         public static final int map_frame=0x7f06005b;
         public static final int middle=0x7f060019;
         public static final int never=0x7f060011;
         public static final int none=0x7f060004;
         public static final int normal=0x7f060005;
+        public static final int num=0x7f060064;
         public static final int pager=0x7f060057;
         public static final int progress_circular=0x7f060047;
         public static final int progress_horizontal=0x7f060048;
@@ -1285,6 +1287,8 @@ containing a value of this type.
         public static final int rotatedown=0x7f060029;
         public static final int rotateup=0x7f060028;
         public static final int satellite=0x7f060006;
+        public static final int schedule=0x7f060067;
+        public static final int scheduleLayout=0x7f060065;
         public static final int search_badge=0x7f06004b;
         public static final int search_bar=0x7f06004a;
         public static final int search_button=0x7f06004c;
@@ -1307,8 +1311,8 @@ containing a value of this type.
         public static final int submit_area=0x7f060052;
         public static final int tabMode=0x7f06000a;
         public static final int tablet=0x7f060020;
-        public static final int tempMax=0x7f06006b;
-        public static final int tempMin=0x7f06006c;
+        public static final int tempMax=0x7f06006f;
+        public static final int tempMin=0x7f060070;
         public static final int terrain=0x7f060007;
         public static final int textView1=0x7f060055;
         public static final int title=0x7f06003c;
@@ -1317,9 +1321,9 @@ containing a value of this type.
         public static final int up=0x7f060032;
         public static final int useLogo=0x7f06000b;
         public static final int view=0x7f06005d;
-        public static final int weatherDescription=0x7f06006d;
-        public static final int weather_item_layout=0x7f060067;
-        public static final int weather_list=0x7f060066;
+        public static final int weatherDescription=0x7f060071;
+        public static final int weather_item_layout=0x7f06006b;
+        public static final int weather_list=0x7f06006a;
         public static final int withText=0x7f060014;
         public static final int zoomin=0x7f060026;
         public static final int zoomout=0x7f060027;
@@ -1381,12 +1385,15 @@ containing a value of this type.
         public static final int main_fragment=0x7f03001c;
         public static final int map_fragment=0x7f03001d;
         public static final int question_fragment=0x7f03001e;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001f;
-        public static final int trivia_end_fragment=0x7f030020;
-        public static final int trivia_game_frag=0x7f030021;
-        public static final int trivia_home_fragment=0x7f030022;
-        public static final int weather_fragment=0x7f030023;
-        public static final int weather_item=0x7f030024;
+        public static final int schedule_layout=0x7f03001f;
+        public static final int schedulefragment_main=0x7f030020;
+        public static final int support_simple_spinner_dropdown_item=0x7f030021;
+        public static final int tab=0x7f030022;
+        public static final int trivia_end_fragment=0x7f030023;
+        public static final int trivia_game_frag=0x7f030024;
+        public static final int trivia_home_fragment=0x7f030025;
+        public static final int weather_fragment=0x7f030026;
+        public static final int weather_item=0x7f030027;
     }
     public static final class menu {
         public static final int main=0x7f0e0000;
@@ -1396,6 +1403,13 @@ containing a value of this type.
         public static final int trivia_questions=0x7f050000;
     }
     public static final class string {
+        public static final int Friday=0x7f070032;
+        /**  Days of Week 
+         */
+        public static final int Monday=0x7f07002e;
+        public static final int Thursday=0x7f070031;
+        public static final int Tuesday=0x7f07002f;
+        public static final int Wednesday=0x7f070030;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f070019;

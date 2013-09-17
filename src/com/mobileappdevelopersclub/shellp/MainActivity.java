@@ -14,9 +14,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mobileappdevelopersclub.shellp.ui.AboutUsFragment;
 import com.mobileappdevelopersclub.shellp.ui.MainFragment;
-import com.mobileappdevelopersclub.shellp.ui.TriviaGameFrag;
+import com.mobileappdevelopersclub.shellp.ui.ScheduleFragment;
 import com.mobileappdevelopersclub.shellp.ui.WeatherFragment;
 import com.mobileappdevelopersclub.ui.widgets.JazzyViewPager;
 import com.mobileappdevelopersclub.ui.widgets.JazzyViewPager.TransitionEffect;
@@ -33,6 +32,7 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Globals.mgr = getSupportFragmentManager();
+		Globals.actionBar = getSupportActionBar();
 		actionBar = getSupportActionBar();
 		mPagerAdapter = new ShellpFragmentPagerAdapter(getSupportFragmentManager());
 		setupJazziness(TransitionEffect.Tablet);
@@ -63,7 +63,7 @@ public class MainActivity extends ActionBarActivity {
 				actionBar.addTab(actionBar.newTab().setText("Map").setTabListener(tabListener));
 				break;
 			case 1:
-				actionBar.addTab(actionBar.newTab().setText("Trivia").setTabListener(tabListener));
+				actionBar.addTab(actionBar.newTab().setText("Schedule").setTabListener(tabListener));
 				break;
 			case 2: 
 				actionBar.addTab(actionBar.newTab().setText("Weather").setTabListener(tabListener));
@@ -105,7 +105,7 @@ public class MainActivity extends ActionBarActivity {
 			if(i == 0 ) {
 				fragment = MapFragment.newInstance(i);
 			} else if (i == 1){
-				fragment = TriviaGameFrag.newInstance(i);
+				fragment = ScheduleFragment.newInstance();
 			} else if (i == 2){
 				fragment = WeatherFragment.newInstance(i);
 			}  else {

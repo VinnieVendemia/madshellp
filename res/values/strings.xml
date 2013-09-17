@@ -28,4 +28,12 @@
     <string name="start_loc">Where are you now?</string>
     <string name="end_loc">Where do you want to go?</string>
     
+    <!-- Days of Week -->
+    
+    <string name="Monday">Monday</string>
+     <string name="Tuesday">Tuesday</string>
+      <string name="Wednesday">Wednesday</string>
+       <string name="Thursday">Thursday</string>
+        <string name="Friday">Friday</string>
+    
 </resources>
