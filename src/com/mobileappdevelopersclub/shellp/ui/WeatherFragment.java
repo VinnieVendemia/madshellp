@@ -26,7 +26,7 @@ public class WeatherFragment extends Fragment implements OnRefreshListener {
 	private final String URL = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=20740&format=json&num_of_days=5&date=2013-09-05&key=jsrkcyrwcx4w2fjjsknwzg2c";
 	ListView mList;
 	WeatherListAdapter mAdapter;
-	private PullToRefreshAttacher mPullToRefreshAttacher;
+//	private PullToRefreshAttacher mPullToRefreshAttacher;
 	
 	public static WeatherFragment newInstance(int testInt) {
 		WeatherFragment fragment = new WeatherFragment();
@@ -52,8 +52,8 @@ public class WeatherFragment extends Fragment implements OnRefreshListener {
 
 		mAdapter = new WeatherListAdapter(getActivity() , 0,  new ArrayList<Weather>());
 		mList.setAdapter(mAdapter);
-		mPullToRefreshAttacher = ((MainActivity) getActivity()).getPullToRefreshAttacher();
-		mPullToRefreshAttacher.addRefreshableView(mList, this);
+//		mPullToRefreshAttacher = ((MainActivity) getActivity()).getPullToRefreshAttacher();
+//		mPullToRefreshAttacher.addRefreshableView(mList, this);
 //		mList.setOnScrollListener(this);
 
 		return view;
@@ -89,7 +89,7 @@ public class WeatherFragment extends Fragment implements OnRefreshListener {
 		mAdapter.clear();
 		mAdapter.addAll(currWeather);
 		mAdapter.notifyDataSetChanged();
-		mPullToRefreshAttacher.setRefreshComplete();
+//		mPullToRefreshAttacher.setRefreshComplete();
 	}
 
 	@Override

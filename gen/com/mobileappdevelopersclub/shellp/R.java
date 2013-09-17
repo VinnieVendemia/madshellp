@@ -19,7 +19,9 @@ public final class R {
         public static final int fade_out=0x7f040007;
     }
     public static final class array {
-        public static final int jazzy_effects=0x7f0d0000;
+        public static final int bldg_location=0x7f0d0001;
+        public static final int bldg_names=0x7f0d0000;
+        public static final int jazzy_effects=0x7f0d0002;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 

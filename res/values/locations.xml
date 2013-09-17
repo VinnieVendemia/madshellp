@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="bldg_names">
+        <item>Hornbake Library</item>
+        <item>Geology Bldg</item>
+        <item>Hornbake Library</item>
+        <item>Plant Science Bldg</item>
+        <item>Physics Bldg</item>
+        <item>Chemistry &amp; Biochemistry, Dept of</item>
+        <item>Regents Drive Parking Garage</item>
+        <item>J.M. Patterson Bldg</item>
+        <item>Chemical and Nuclear Engineering Bldg</item>
+        <item>Satellite Central Utilities Bldg</item>
+        <item>Instructional Television Facility</item>
+        <item>Engineering Laboratory Bldg</item>
+        <item>Glenn L. Martin Hall</item>
+        <item>Wind Tunnel Bldg</item>
+        <item>Computer Science Instructional Center</item>
+        <item>A.V. Williams Bldg</item>
+        <item>Engineering Annex Bldg</item>
+        <item>Jeong H. Kim Engineering Bldg</item>
+        <item>Potomac Bldg</item>
+        <item>Energy Research Facility</item>
+        <item>Fieldhouse Dr</item>
+        <item>Fieldhouse Dr</item>
+        <item>Shriver Laboratory</item>
+        <item>Holzapfel Hall</item>
+        <item>H.J. Patterson Hall</item>
+        <item>Mathematics Bldg</item>
+        <item>Biology - Psychology Bldg</item>
+        <item>Microbiology Bldg</item>
+        <item>Adele H.Stamp Student Union Bldg</item>
+        <item>H.J. Patterson Hall</item>
+        <item>Health Center</item>
+        <item>Jimenez Hall</item>
+        <item>St Mary\'s Hall</item>
+        <item>McKeldin Library</item>
+        <item>McKeldin Mall Fountain</item>
+        <item>Chincoteague Hall</item>
+        <item>Somerset Hall</item>
+        <item>Queen Anne\'s Hall</item>
+        <item>Anne Arundel Hall</item>
+        <item>Worcester Hall</item>
+        <item>Tydings Hall</item>
+        <item>Francis Scott Key Hall</item>
+        <item>Skinner Bldg</item>
+        <item>Woods Hall</item>
+        <item>Marie Mt Hall</item>
+        <item>Shoemaker Bldg</item>
+        <item>LeFrak Hall</item>
+        <item>University Commons 5</item>
+        <item>South Campus Dining Hall</item>
+        <item>Wicomico Hall</item>
+        <item>Caroline Hall</item>
+        <item>Carroll Hall</item>
+        <item>Satellite Central Utilities Bldg 2</item>
+        <item>South Campus Commons 7</item>
+        <item>Susquehanna Hall</item>
+        <item>Washington Hall</item>
+        <item>Allegany Hall</item>
+        <item>College Parks LDS Institute of Religion</item>
+        <item>Rosenbloom Hillel Center for Jewish Life</item>
+        <item>Van Munching Hall</item>
+        <item>Architecture Bldg</item>
+        <item>Preinkert Field House</item>
+        <item>Art-Sociology Bldg</item>
+        <item>Tawes Fine Arts Bldg</item>
+        <item>Knight Hall</item>
+        <item>University College (UMUC)/Inn and Conference Ctr</item>
+        <item>UMUC/Inn and Conference Center</item>
+        <item>UMUC/University College Garage</item>
+        <item>Student/Faculty Services Center (UMUC)</item>
+        <item>JH Kehoe Track</item>
+        <item>Byrd Stadium</item>
+        <item>Clarice Smith Performing Arts Center</item>
+        <item>Samuel Riggs IV Alumni Center</item>
+        <item>Gossett Team House</item>
+        <item>Varsity Sports Teamhouse</item>
+        <item>Biosciences Research Bldg</item>
+        <item>Cole Student Activities Bldg</item>
+        <item>Microbiology Bldg</item>
+        <item>University of Maryland Memorial Chapel</item>
+        <item>University of Maryland Memorial Chapel</item>
+        <item>Talbot Hall</item>
+        <item>Garrett Hall</item>
+        <item>LeFrak Hall</item>
+        <item>Satellite Central Utilities Bldg 2</item>
+        <item>Engineering Fields</item>
+        <item>Mitchell Bldg</item>
+        <item>Reckord Armory</item>
+        <item>Turner Hall</item>
+        <item>Lee Bldg</item>
+        <item>Symons Hall</item>
+        <item>Campus Farm</item>
+        <item>Cattle Barn</item>
+        <item>Tennis, Bubble Practice Facility</item>
+        <item>Comcast Center and Pavillion</item>
+        <item>Geary F. Eppley Recreation Center</item>
+        <item>Institute of Applied Agriculture</item>
+        <item>Computer and Space Sciences Building</item>
+        <item>Steven Tender\'s Office, University of Maryland, Division of Information Technology</item>
+        <item>Bel Air Hall</item>
+        <item>Chestertown Hall</item>
+        <item>Cumberland Hall</item>
+        <item>Cambridge Community Center</item>
+        <item>Cambridge Hall</item>
+        <item>Centreville Hall</item>
+        <item>School of Public Health</item>
+        <item>La Plata Beach</item>
+        <item>The Diner</item>
+        <item>Hagerstown Hall</item>
+        <item>Ellicott Hall</item>
+        <item>LaPlata Hall</item>
+        <item>Denton Community Center</item>
+        <item>Elkton Hall</item>
+        <item>Denton Hall</item>
+        <item>Easton Hall</item>
+        <item>Oakland Hall</item>
+        <item>Aquatic Center</item>
+        <item>Center for Young Children</item>
+        <item>Biomolecular Sciences Bldg</item>
+        <item>Manufacturing Bldg</item>
+        <item>Neutral Buoyancy Research Facility</item>
+        <item>Technology Advancement Bldg</item>
+        <item>Animal Science/Agricultural Engineering Bldg</item>
+        <item>Fraternity Fields</item>
+        <item>Leonardtown Hall and Community Center</item>
+        <item>South Campus Commons 1</item>
+        <item>South Campus Commons Building 2</item>
+        <item>South Campus Dining Hall</item>
+        <item>Garrett Hall</item>
+        <item>Talbot Hall</item>
+        <item>Kent Hall</item>
+        <item>Calvert Hall</item>
+        <item>Cecil Hall</item>
+        <item>Prince Georges Hall</item>
+        <item>Baltimore Hall</item>
+        <item>The Washington Quad</item>
+        <item>Howard Hall</item>
+        <item>Washington Hall</item>
+        <item>Frederick Hall</item>
+        <item>Harford Hall</item>
+        <item>Annapolis Hall</item>
+        <item>Charles Hall</item>
+        <item>Allegany Hall</item>
+        <item>Montgomery Hall</item>
+        <item>South Campus Commons #4</item>
+        <item>Dorchester Hall</item>
+        <item>Benjamin Bldg</item>
+        <item>Sorority Row</item>
+    </string-array>
+    <string-array name="bldg_location">
+        <item>38.988140,-76.941467</item>
+        <item>38.988159,-76.940926</item>
+        <item>38.988140,-76.941467</item>
+        <item>38.988831,-76.941170</item>
+        <item>38.988262,-76.940125</item>
+        <item>38.989929,-76.940117</item>
+        <item>38.989685,-76.941444</item>
+        <item>38.990505,-76.940285</item>
+        <item>38.990414,-76.939171</item>
+        <item>38.989803,-76.938469</item>
+        <item>38.989567,-76.938309</item>
+        <item>38.989361,-76.937965</item>
+        <item>38.988892,-76.938164</item>
+        <item>38.989887,-76.936905</item>
+        <item>38.989986,-76.936172</item>
+        <item>38.990788,-76.936295</item>
+        <item>38.990726,-76.937096</item>
+        <item>38.991055,-76.938110</item>
+        <item>38.990398,-76.938148</item>
+        <item>38.991974,-76.936813</item>
+        <item>38.989380,-76.943062</item>
+        <item>38.989380,-76.943062</item>
+        <item>38.987309,-76.941887</item>
+        <item>38.986870,-76.941917</item>
+        <item>38.986870,-76.943687</item>
+        <item>38.988964,-76.939217</item>
+        <item>38.988823,-76.942604</item>
+        <item>38.988102,-76.943459</item>
+        <item>38.988049,-76.944405</item>
+        <item>38.986870,-76.943687</item>
+        <item>38.987209,-76.944489</item>
+        <item>38.986877,-76.944603</item>
+        <item>38.986954,-76.945625</item>
+        <item>38.985947,-76.944954</item>
+        <item>38.985989,-76.941994</item>
+        <item>38.985218,-76.944565</item>
+        <item>38.985050,-76.945580</item>
+        <item>38.985291,-76.946320</item>
+        <item>38.985943,-76.946747</item>
+        <item>38.984627,-76.945023</item>
+        <item>38.984783,-76.944008</item>
+        <item>38.984982,-76.943115</item>
+        <item>38.984779,-76.941849</item>
+        <item>38.985100,-76.941849</item>
+        <item>38.984943,-76.940811</item>
+        <item>38.983917,-76.942749</item>
+        <item>38.983665,-76.943687</item>
+        <item>38.982693,-76.944633</item>
+        <item>38.983025,-76.943687</item>
+        <item>38.983727,-76.945984</item>
+        <item>38.983475,-76.945900</item>
+        <item>38.984005,-76.945625</item>
+        <item>38.983570,-76.944633</item>
+        <item>38.981567,-76.944633</item>
+        <item>38.982109,-76.943733</item>
+        <item>38.981831,-76.941307</item>
+        <item>38.981552,-76.941666</item>
+        <item>38.981869,-76.947395</item>
+        <item>38.982754,-76.948738</item>
+        <item>38.983063,-76.947388</item>
+        <item>38.984447,-76.947891</item>
+        <item>38.984356,-76.946060</item>
+        <item>38.985168,-76.948120</item>
+        <item>38.985943,-76.948235</item>
+        <item>38.986938,-76.948486</item>
+        <item>38.986031,-76.953941</item>
+        <item>38.986141,-76.955147</item>
+        <item>38.987045,-76.954407</item>
+        <item>38.987068,-76.953667</item>
+        <item>38.988747,-76.950356</item>
+        <item>38.990353,-76.947372</item>
+        <item>38.990883,-76.950653</item>
+        <item>38.989517,-76.949043</item>
+        <item>38.989742,-76.946388</item>
+        <item>38.990044,-76.945175</item>
+        <item>38.989033,-76.943138</item>
+        <item>38.988007,-76.946762</item>
+        <item>38.988102,-76.943459</item>
+        <item>38.984150,-76.940666</item>
+        <item>38.984150,-76.940948</item>
+        <item>38.983364,-76.942276</item>
+        <item>38.983269,-76.942657</item>
+        <item>38.983665,-76.943687</item>
+        <item>38.983570,-76.944633</item>
+        <item>38.987831,-76.937302</item>
+        <item>38.986675,-76.939507</item>
+        <item>38.986019,-76.939011</item>
+        <item>38.986191,-76.937347</item>
+        <item>38.985394,-76.939507</item>
+        <item>38.987049,-76.940674</item>
+        <item>38.992283,-76.940788</item>
+        <item>38.992363,-76.940392</item>
+        <item>38.989677,-76.954315</item>
+        <item>38.995575,-76.941238</item>
+        <item>38.993668,-76.945045</item>
+        <item>38.990856,-76.943604</item>
+        <item>38.990982,-76.942574</item>
+        <item>38.991138,-76.943047</item>
+        <item>38.992817,-76.942619</item>
+        <item>38.992825,-76.943474</item>
+        <item>38.992302,-76.943939</item>
+        <item>38.992256,-76.943024</item>
+        <item>38.991722,-76.943100</item>
+        <item>38.992264,-76.942123</item>
+        <item>38.993454,-76.943153</item>
+        <item>38.992489,-76.945129</item>
+        <item>38.992458,-76.946602</item>
+        <item>38.992439,-76.947418</item>
+        <item>38.991837,-76.946686</item>
+        <item>38.992447,-76.945915</item>
+        <item>38.992798,-76.949600</item>
+        <item>38.992489,-76.949036</item>
+        <item>38.992237,-76.949966</item>
+        <item>38.993019,-76.950264</item>
+        <item>38.993839,-76.949356</item>
+        <item>38.993393,-76.946907</item>
+        <item>38.993408,-76.948563</item>
+        <item>38.992851,-76.937637</item>
+        <item>38.992874,-76.939415</item>
+        <item>38.992912,-76.938972</item>
+        <item>38.992523,-76.938751</item>
+        <item>38.991680,-76.939957</item>
+        <item>38.983902,-76.936577</item>
+        <item>38.982952,-76.932442</item>
+        <item>38.982311,-76.942902</item>
+        <item>38.982658,-76.942871</item>
+        <item>38.983025,-76.943687</item>
+        <item>38.983269,-76.942657</item>
+        <item>38.983364,-76.942276</item>
+        <item>38.983257,-76.941849</item>
+        <item>38.982929,-76.942322</item>
+        <item>38.982914,-76.941666</item>
+        <item>38.982605,-76.941757</item>
+        <item>38.982254,-76.942207</item>
+        <item>38.982281,-76.941345</item>
+        <item>38.981964,-76.941956</item>
+        <item>38.981831,-76.941307</item>
+        <item>38.982029,-76.940742</item>
+        <item>38.982502,-76.940857</item>
+        <item>38.982250,-76.940048</item>
+        <item>38.981579,-76.940498</item>
+        <item>38.981552,-76.941666</item>
+        <item>38.981880,-76.939590</item>
+        <item>38.981304,-76.940910</item>
+        <item>38.986706,-76.946182</item>
+        <item>38.986790,-76.947372</item>
+        <item>38.981255,-76.935860</item>
+    </string-array>
+
+</resources>

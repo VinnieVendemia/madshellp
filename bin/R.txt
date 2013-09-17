@@ -6,7 +6,9 @@ int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
 int anim fade_in 0x7f040006
 int anim fade_out 0x7f040007
-int array jazzy_effects 0x7f0d0000
+int array bldg_location 0x7f0d0001
+int array bldg_names 0x7f0d0000
+int array jazzy_effects 0x7f0d0002
 int attr actionBarDivider 0x7f010019
 int attr actionBarItemBackground 0x7f01001a
 int attr actionBarSize 0x7f010018

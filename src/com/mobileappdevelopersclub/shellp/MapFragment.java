@@ -1,10 +1,12 @@
 package com.mobileappdevelopersclub.shellp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.w3c.dom.Document;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
@@ -19,8 +21,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,11 +45,13 @@ public class MapFragment extends Fragment {
 	
 	public static GoogleMap mMap;
 	View view;
-	EditText startLocation;
-	EditText endLocation;
+	AutoCompleteTextView startLocation;
+	AutoCompleteTextView endLocation;
 	ImageView searchIcon;
 	private Context mContext;
 	Location mUserLocation;
+	ArrayAdapter<String> buildingNamesAdapter;
+	HashMap <String,String> buildingsMap;
 	
 	public static MapFragment newInstance(int testInt) {
 		MapFragment fragment = new MapFragment();
@@ -57,7 +63,21 @@ public class MapFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		mContext = getActivity();
-		new GetUserLocation().execute();
+		
+		Resources res = getResources();
+        String[] buildingNames = res.getStringArray(R.array.bldg_names);
+        String[] buildingLocations = res.getStringArray(R.array.bldg_location);        
+        
+        buildingsMap = new HashMap<String,String> ();
+        
+        for(int i = 0; i < buildingNames.length; i ++) {
+        	buildingsMap.put(buildingNames[i] , buildingLocations[i] );
+        }
+        
+        buildingNamesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,buildingNames );
+		
+		
+//		new GetUserLocation().execute();
 	}
 
 	@Override
@@ -66,19 +86,32 @@ public class MapFragment extends Fragment {
 		super.onCreateView(inflater, container, savedInstanceState);
 		view = inflater.inflate(R.layout.map_fragment,  container, false);
 		
-		startLocation = (EditText)view.findViewById(R.id.start_location);
-		endLocation = (EditText)view.findViewById(R.id.end_location);
+		startLocation = (AutoCompleteTextView)view.findViewById(R.id.start_location);
+		startLocation.setAdapter(buildingNamesAdapter);
+		endLocation = (AutoCompleteTextView)view.findViewById(R.id.end_location);
+		endLocation.setAdapter(buildingNamesAdapter);
+	
 		searchIcon = (ImageView)view.findViewById(R.id.search_icon);
 		searchIcon.setOnTouchListener(new OnTouchListener(){
 
 			@Override
 			public boolean onTouch(View arg0, MotionEvent arg1) {
-				String sLocation = startLocation.getText().toString();
-				String eLocation = endLocation.getText().toString();
 				
-				if(!TextUtils.isEmpty(sLocation) && !TextUtils.isEmpty(eLocation)) {
+				String startName = startLocation.getText().toString();
+				String endName = endLocation.getText().toString();
+				
+				//long-lat of start
+				String sLocation = buildingsMap.get(startName);
+				//long-lat of end
+				String eLocation = buildingsMap.get(endName);
+				
+				if(sLocation != null && eLocation != null) {
 					//TODO: Perform search
+					new GetDirections().execute(startName, endName, sLocation, eLocation);
+				} else {
+					Toast.makeText(getActivity(), "Could not perform search", Toast.LENGTH_SHORT).show();
 				}
+				
 				return false;
 			}
 			
@@ -203,15 +236,24 @@ public class MapFragment extends Fragment {
 
 	}
 	
-	private class GetDirections extends AsyncTask<Void, Void, Void> {
+	private class GetDirections extends AsyncTask<String, Void, Void> {
 		
 		PolylineOptions rectLine;
+		String sName;
+		String eName;
 		
 		@Override
-		protected Void doInBackground(Void... params) {
-			LatLng fromPosition = new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude());
-			LatLng toPosition = new LatLng(STAMP_LAT, STAMP_LONG);
-
+		protected Void doInBackground(String... params) {
+			sName = params[0];
+			eName = params[1];
+			String[] sLocation = params[2].split(",");
+			String[] eLocation = params[3].split(",");
+			
+			LatLng fromPosition = new LatLng(Double.parseDouble(sLocation[0])
+												, Double.parseDouble(sLocation[1]));
+			LatLng toPosition =	new LatLng(Double.parseDouble(eLocation[0])
+													, Double.parseDouble(eLocation[1]));
+			
 			GMapV2Direction md = new GMapV2Direction();
 
 			Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_WALKING);
@@ -228,14 +270,14 @@ public class MapFragment extends Fragment {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			setDirections(rectLine);
+			setDirections(rectLine, sName, eName);
 		}
 		
 		
 		
 	}
 	
-	private void setDirections(PolylineOptions rectLine ) {
+	private void setDirections(PolylineOptions rectLine, String start, String end ) {
 		mMap.addPolyline(rectLine);
 	}
 	

@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
 	JazzyViewPager mJazzy;
 	ShellpFragmentPagerAdapter mPagerAdapter;
 	ActionBar actionBar;
-	private PullToRefreshAttacher mPullToRefreshAttacher;
+//	private PullToRefreshAttacher mPullToRefreshAttacher;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
 		actionBar = getSupportActionBar();
 		mPagerAdapter = new ShellpFragmentPagerAdapter(getSupportFragmentManager());
 		setupJazziness(TransitionEffect.Tablet);
-		mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
+//		mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
 
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -82,9 +82,9 @@ public class MainActivity extends ActionBarActivity {
 
 	}
 
-	public PullToRefreshAttacher getPullToRefreshAttacher() {
-		return mPullToRefreshAttacher;
-	}
+//	public PullToRefreshAttacher getPullToRefreshAttacher() {
+//		return mPullToRefreshAttacher;
+//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

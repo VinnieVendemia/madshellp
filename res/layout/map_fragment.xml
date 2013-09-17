@@ -15,13 +15,13 @@
             android:layout_weight=".9"
             android:orientation="vertical" >
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/start_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/start_loc" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/end_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
