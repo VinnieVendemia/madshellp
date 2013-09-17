@@ -3,8 +3,8 @@ package com.mobileappdevelopersclub.shellp.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher.OnRefreshListener;
+//import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
+//import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher.OnRefreshListener;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,7 +20,7 @@ import com.mobileappdevelopersclub.shellp.models.Weather;
 import com.mobileappdevelopersclub.shellp.models.WeatherResponse;
 import com.mobileappdevelopersclub.shellp.transactions.AbsHttpTask;
 
-public class WeatherFragment extends Fragment implements OnRefreshListener {
+public class WeatherFragment extends Fragment  {
 
 	int testInt;
 	private final String URL = "http://api.worldweatheronline.com/free/v1/weather.ashx?q=20740&format=json&num_of_days=5&date=2013-09-05&key=jsrkcyrwcx4w2fjjsknwzg2c";
@@ -92,8 +92,8 @@ public class WeatherFragment extends Fragment implements OnRefreshListener {
 //		mPullToRefreshAttacher.setRefreshComplete();
 	}
 
-	@Override
-	public void onRefreshStarted(View view) {
-		fetchWeatherData();
-	}
+//	@Override
+//	public void onRefreshStarted(View view) {
+//		fetchWeatherData();
+//	}
 }
