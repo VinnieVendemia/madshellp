@@ -17,3 +17,7 @@ Will Need the jar file (ImageLoader) for loading images from a URL
 https://code.google.com/p/libs-for-android/wiki/ImageLoader
 
 
+Clone Actionbar pull to refresh library.  Import into workspace and add to project as a lib.
+  Is used in the Weather Fragment to fetch new weather data.  
+
+https://github.com/chrisbanes/ActionBar-PullToRefresh.git

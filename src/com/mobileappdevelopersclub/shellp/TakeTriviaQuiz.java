@@ -7,11 +7,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.mobileappdevelopersclub.shellp.Questions;
 import com.mobileappdevelopersclub.shellp.MainActivity.ShellpFragmentPagerAdapter;
 import com.mobileappdevelopersclub.shellp.ui.AboutUsFragment;
 import com.mobileappdevelopersclub.shellp.ui.HomeTriviaFragment;
 import com.mobileappdevelopersclub.shellp.ui.MainFragment;
-import com.mobileappdevelopersclub.shellp.ui.MapFragment;
 import com.mobileappdevelopersclub.shellp.ui.TriviaEndFragment;
 import com.mobileappdevelopersclub.shellp.ui.TriviaGameFrag;
 import com.mobileappdevelopersclub.shellp.ui.TriviaQuestionFragment;
@@ -30,6 +30,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,14 +40,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class TakeTriviaQuiz extends ActionBarActivity{
-
+	
+	public final String tag = "TakeTriviaQuiz";
 	JazzyViewPager mJazzy;
 	ShellpFragmentPagerAdapter mPagerAdapter;
 	ActionBar actionBar;
 
 	//**************************
 	// Trivia Game Variables
-	ArrayList < Questions > list ;
+	public ArrayList < Questions > list ;
     ArrayList <Questions> tempList, tempListCopy;
     private int count,correct;
     RadioButton rBtn0,rBtn1,rBtn2,rBtn3, temp;
@@ -58,7 +60,6 @@ public class TakeTriviaQuiz extends ActionBarActivity{
     int i = 0;
     Button submit;
     Random rgen = new Random();  // Random number generator
-    Typeface font;
     MediaPlayer sound;
 
 
@@ -67,7 +68,7 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.trivia_home_fragment);
 		
 		//*************************************************
 		// Fragment Navigation
@@ -80,30 +81,45 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 		//*************************************************
 		// Trivia Game Content
 		
-		question = (TextView) findViewById(R.id.view);
+//		question = (TextView) findViewById(R.id.view);
+//
+//        //Sets the font of the question
+//        question.setTypeface(font);
+//        display = (TextView) findViewById(R.id.display);
+//
+//        submit= (Button) findViewById(R.id.button1);
+//        submit.setText("Submit");      
+//        RDG1 =(RadioGroup)findViewById(R.id.radioGroup1);
+//
+//        rBtn0 = (RadioButton) findViewById(R.id.radio0);
+//        rBtn1 = (RadioButton) findViewById(R.id.radio1);
+//        rBtn2 = (RadioButton) findViewById(R.id.radio2);
+//        rBtn3 = (RadioButton) findViewById(R.id.radio3);
+//
+//        //Sets the font of the buttons
+//        rBtn0.setTypeface(font);
+//        rBtn1.setTypeface(font);
+//        rBtn2.setTypeface(font);
+//        rBtn3.setTypeface(font);
+//
+//        RDG1.clearCheck() ; // clear the default selection of  first radio button in radio group
 
-        //Sets the font of the question
-        question.setTypeface(font);
-        display = (TextView) findViewById(R.id.display);
-
-        submit= (Button) findViewById(R.id.button1);
-        submit.setText("Submit");      
-        RDG1 =(RadioGroup)findViewById(R.id.radioGroup1);
-
-        rBtn0 = (RadioButton) findViewById(R.id.radio0);
-        rBtn1 = (RadioButton) findViewById(R.id.radio1);
-        rBtn2 = (RadioButton) findViewById(R.id.radio2);
-        rBtn3 = (RadioButton) findViewById(R.id.radio3);
-
-        //Sets the font of the buttons
-        rBtn0.setTypeface(font);
-        rBtn1.setTypeface(font);
-        rBtn2.setTypeface(font);
-        rBtn3.setTypeface(font);
-
-        RDG1.clearCheck() ; // clear the default selection of  first radio button in radio group
-
-
+		try {
+			list = PlayWithRawFiles();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// Prints out questions in logcat
+		/*
+		for (int i = 0; i < list.size(); i++){
+			Log.d(tag, list.get(i).getQuestion());
+			
+			
+		}*/
+		
+		
         //**************************************************
 		//
 		// Create a tab listener that is called when the user changes tabs.
@@ -113,7 +129,7 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 			}
 
 			public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-				// hide the given tab
+				
 			}
 
 			public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
@@ -122,11 +138,23 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 		};
 
 		// Add the number of tabs in the action bar
-		for (int i = 0; i < 11; i++) {
-			actionBar.addTab(
-					actionBar.newTab()
-					.setText("Question:  " + (i + 1))
-					.setTabListener(tabListener));
+		for (int i = 0; i <= 11; i++) {
+			if (i == 0){
+				actionBar.addTab(
+						actionBar.newTab()
+						.setText("Start")
+						.setTabListener(tabListener));
+			} else if (i == 11){
+				actionBar.addTab(
+						actionBar.newTab()
+						.setText("Results")
+						.setTabListener(tabListener));
+			} else {
+				actionBar.addTab(
+						actionBar.newTab()
+						.setText("Question:  " + (i))
+						.setTabListener(tabListener));
+			}
 		}
 	}
 
@@ -148,7 +176,7 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 			Fragment fragment; 
 			if (i == 0){
 				fragment = HomeTriviaFragment.newInstance(i);
-			} else if (i == 10){
+			} else if (i == 11){
 				fragment = TriviaEndFragment.newInstance(i);
 			} else {
 				fragment = TriviaQuestionFragment.newInstance(i);
@@ -158,7 +186,7 @@ public class TakeTriviaQuiz extends ActionBarActivity{
 
 		@Override // Number of tabs and fragments
 		public int getCount() {
-			return 11;
+			return 12;
 		}
 
 		@Override
@@ -216,7 +244,7 @@ public class TakeTriviaQuiz extends ActionBarActivity{
      *
      **********************************************************************************************/
    
-    public void PlayWithRawFiles() throws IOException {  
+    public ArrayList<Questions> PlayWithRawFiles() throws IOException {  
     		ArrayList < Questions > list ; // might be able to move to class declaration/instantiation
 
     		String  delims = "[~]";
@@ -235,11 +263,11 @@ public class TakeTriviaQuiz extends ActionBarActivity{
                             list.add(newQuestion);
                     }                              
             }              
-            is.close();    
+            is.close();
+            
+            return list;
     }
-
-	
-	
+    
 }
 
 

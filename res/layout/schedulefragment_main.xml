@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scheduleLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/hot_red"
+    android:orientation="vertical" >
+
+    <Spinner
+        android:id="@+id/daysOfWeek"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight=".1" />
+
+    <FrameLayout android:id="@+id/schedule"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight=".9" />
+
+</LinearLayout>

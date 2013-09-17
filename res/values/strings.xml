@@ -22,7 +22,18 @@
     <string name="weather_access_key">jsrkcyrwcx4w2fjjsknwzg2c</string>
     <string name="title_activity_weather">WeatherActivity</string>
     <string name="hello_world">Hello world!</string>
-    <string name="google_maps_debug_key">AIzaSyBNKj2IKXAd226V4xxCVO-QGBbfFg63uQA</string>
-    <string name="google_maps_release_key">AIzaSyDrLL8HDYeSbDu-rzCO6bG56Hx84ARPvCI</string>
+    <string name="google_maps_debug_key">AIzaSyD5p05gH6VECvQSv7SQdbNZ1rUsjHCgyc4</string>
+    <string name="google_maps_release_key">AIzaSyDp-x7OXSOnoUpGaygCHaX3qZ6U9-Be9Bc</string>
 
+    <string name="start_loc">Where are you now?</string>
+    <string name="end_loc">Where do you want to go?</string>
+    
+    <!-- Days of Week -->
+    
+    <string name="Monday">Monday</string>
+     <string name="Tuesday">Tuesday</string>
+      <string name="Wednesday">Wednesday</string>
+       <string name="Thursday">Thursday</string>
+        <string name="Friday">Friday</string>
+    
 </resources>

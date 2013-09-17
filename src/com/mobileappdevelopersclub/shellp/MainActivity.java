@@ -1,5 +1,6 @@
 package com.mobileappdevelopersclub.shellp;
 
+import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,10 +14,8 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mobileappdevelopersclub.shellp.ui.AboutUsFragment;
 import com.mobileappdevelopersclub.shellp.ui.MainFragment;
-import com.mobileappdevelopersclub.shellp.ui.MapFragment;
-import com.mobileappdevelopersclub.shellp.ui.TriviaGameFrag;
+import com.mobileappdevelopersclub.shellp.ui.ScheduleFragment;
 import com.mobileappdevelopersclub.shellp.ui.WeatherFragment;
 import com.mobileappdevelopersclub.ui.widgets.JazzyViewPager;
 import com.mobileappdevelopersclub.ui.widgets.JazzyViewPager.TransitionEffect;
@@ -26,17 +25,19 @@ public class MainActivity extends ActionBarActivity {
 	JazzyViewPager mJazzy;
 	ShellpFragmentPagerAdapter mPagerAdapter;
 	ActionBar actionBar;
-	
+//	private PullToRefreshAttacher mPullToRefreshAttacher;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Globals.mgr = getSupportFragmentManager();
+		Globals.actionBar = getSupportActionBar();
 		actionBar = getSupportActionBar();
 		mPagerAdapter = new ShellpFragmentPagerAdapter(getSupportFragmentManager());
 		setupJazziness(TransitionEffect.Tablet);
-		
-		
+//		mPullToRefreshAttacher = PullToRefreshAttacher.get(this);
+
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Create a tab listener that is called when the user changes tabs.
@@ -55,34 +56,35 @@ public class MainActivity extends ActionBarActivity {
 		};
 
 		// Add 3 tabs, specifying the tab's text and TabListener
-		for (int i = 0; i < 4; i++) {
-			
+		for (int i = 0; i < 3; i++) {
+
 			switch(i) {
 			case 0:
 				actionBar.addTab(actionBar.newTab().setText("Map").setTabListener(tabListener));
 				break;
 			case 1:
-				actionBar.addTab(actionBar.newTab().setText("Trivia").setTabListener(tabListener));
+				actionBar.addTab(actionBar.newTab().setText("Schedule").setTabListener(tabListener));
 				break;
 			case 2: 
 				actionBar.addTab(actionBar.newTab().setText("Weather").setTabListener(tabListener));
 				break;
-			case 3: 
-				actionBar.addTab(actionBar.newTab().setText("About Us").setTabListener(tabListener));
-				break;
 			default: 
-				//Do Nothing, Should never occur
+				//Do Nothing, Should never reach here
 				break;
 			}
-			
+
 		}
-		
+
 
 
 
 
 
 	}
+
+//	public PullToRefreshAttacher getPullToRefreshAttacher() {
+//		return mPullToRefreshAttacher;
+//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -100,15 +102,14 @@ public class MainActivity extends ActionBarActivity {
 		@Override
 		public Fragment getItem(int i) {
 			Fragment fragment; 
-			if(i == 1 ) {
-				fragment = TriviaGameFrag.newInstance(i);
-			} else if (i == 0){
+			if(i == 0 ) {
 				fragment = MapFragment.newInstance(i);
+			} else if (i == 1){
+				fragment = ScheduleFragment.newInstance();
 			} else if (i == 2){
-				fragment = AboutUsFragment.newInstance(i);
-			} else if (i == 3){
 				fragment = WeatherFragment.newInstance(i);
-			} else {
+			}  else {
+				//Should never reach here, but safety check 
 				fragment = MainFragment.newInstance(i);
 			}
 			return fragment;
@@ -116,32 +117,32 @@ public class MainActivity extends ActionBarActivity {
 
 		@Override
 		public int getCount() {
-			return 4;
+			return 3;
 		}
 
 		@Override
 		public CharSequence getPageTitle(int position) {
 			return "OBJECT " + (position + 1);
 		}
-		
+
 		@Override
 		public boolean isViewFromObject(View view, Object object) {
-		    if(object != null){
-		        return ((Fragment)object).getView() == view;
-		    }else{
-		        return false;
-		    }
+			if(object != null){
+				return ((Fragment)object).getView() == view;
+			}else{
+				return false;
+			}
 		}
-		
+
 		@Override
-	    public Object instantiateItem(ViewGroup container, final int position) {
-	        Object obj = super.instantiateItem(container, position);
-	        mJazzy.setObjectForPosition(obj, position);
-	        return obj;
-	    }
+		public Object instantiateItem(ViewGroup container, final int position) {
+			Object obj = super.instantiateItem(container, position);
+			mJazzy.setObjectForPosition(obj, position);
+			return obj;
+		}
 
 	}
-	
+
 	private void setupJazziness(TransitionEffect effect) {
 		mJazzy = (JazzyViewPager) findViewById(R.id.pager);
 		mJazzy.setTransitionEffect(effect);

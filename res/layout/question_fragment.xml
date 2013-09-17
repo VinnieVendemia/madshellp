@@ -30,7 +30,6 @@
             android:id="@+id/radio0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
             android:text="RadioButton" />
 
         <RadioButton
@@ -50,14 +49,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="RadioButton" />
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="nextQuestion"
-            android:layout_gravity="center"
-            android:text="Submit" />
 
         <TextView
             android:id="@+id/display"

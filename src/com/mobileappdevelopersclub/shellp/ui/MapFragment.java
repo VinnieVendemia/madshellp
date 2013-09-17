@@ -2,6 +2,7 @@ package com.mobileappdevelopersclub.shellp.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,32 @@ public class MapFragment extends Fragment {
 		return view;
 	}
 	
+	
+	
+	@Override
+	public void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		setUpMapIfNeeded();
+	}
+	
+	
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		 // Do Not Miss this
+        try {
+            Fragment fragment = (getFragmentManager().findFragmentById(R.id.map));  
+            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+            ft.remove(fragment);
+            ft.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+
 	private void setUpMapIfNeeded() {
 		// Do a null check to confirm that we have not already instantiated the map.
 
@@ -58,11 +85,11 @@ public class MapFragment extends Fragment {
 
 		if (mMap == null) {
 			mMap = ((SupportMapFragment) Globals.mgr.findFragmentById(R.id.map)).getMap();
-			setUpMap();
+//			setUpMap();
 		} else {
 			mMap = ((SupportMapFragment) Globals.mgr.findFragmentById(R.id.map)).getMap();
 			mMap.clear();
-			setUpMap();
+//			setUpMap();
 		}
 
 	}
