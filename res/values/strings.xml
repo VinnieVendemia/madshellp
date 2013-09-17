@@ -3,6 +3,7 @@
 
     <string name="app_name">Shellp</string>
     <string name="action_settings">Settings</string>
+     <string name="action_extras">Extras</string>
 
     <string-array name="jazzy_effects">
         <item>Standard</item>
