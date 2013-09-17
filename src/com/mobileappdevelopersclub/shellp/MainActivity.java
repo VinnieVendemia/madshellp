@@ -1,6 +1,6 @@
 package com.mobileappdevelopersclub.shellp;
 
-import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshAttacher;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

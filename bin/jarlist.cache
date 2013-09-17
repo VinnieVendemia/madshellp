@@ -1,5 +1,10 @@
 # cache for current jar dependency. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
+<<<<<<< HEAD
+1378669747699 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f C:\Users\Ely\adt-bundle-windows-x86_64-20130729\sdk\extras\android\support\v7\appcompat\libs\android-support-v4.jar
+1379019780398 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f C:\Users\Ely\git\madshellp\libs\android-support-v4.jar
+=======
 1378908291263 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f C:\Users\Vinnie\workspace\Shellp\libs\android-support-v4.jar
 1377975402812 556198 4a6be13368bb64c5a0b0460632d228a1a915f58f C:\Users\Vinnie\sdk\extras\android\support\v7\appcompat\libs\android-support-v4.jar
+>>>>>>> b44364267567b979421e73627e63fdaceb11caff
