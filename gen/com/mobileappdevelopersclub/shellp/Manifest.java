@@ -9,6 +9,6 @@ package com.mobileappdevelopersclub.shellp;
 
 public final class Manifest {
     public static final class permission {
-        public static final String MAPS_RECEIVE="com.mobileappdevelopersclub.shellp.ui.permission.MAPS_RECEIVE";
+        public static final String MAPS_RECEIVE="com.mobileappdevelopersclub.shellp.permission.MAPS_RECEIVE";
     }
 }
