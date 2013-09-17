@@ -14,7 +14,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -25,18 +24,19 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.mobileappdevelopersclub.shellp.transactions.GMapV2Direction;
 
 
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements OnMarkerClickListener {
 	
 	//Constants 
 	static String TAG = "MapFragment";
@@ -52,6 +52,7 @@ public class MapFragment extends Fragment {
 	Location mUserLocation;
 	ArrayAdapter<String> buildingNamesAdapter;
 	HashMap <String,String> buildingsMap;
+	
 	
 	public static MapFragment newInstance(int testInt) {
 		MapFragment fragment = new MapFragment();
@@ -77,7 +78,7 @@ public class MapFragment extends Fragment {
         buildingNamesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line,buildingNames );
 		
 		
-//		new GetUserLocation().execute();
+		new GetUserLocation().execute();
 	}
 
 	@Override
@@ -204,7 +205,7 @@ public class MapFragment extends Fragment {
 		CameraUpdate center = null;
 		center= CameraUpdateFactory.newLatLng(new LatLng(STAMP_LAT, STAMP_LONG));
 		
-		CameraUpdate zoom = CameraUpdateFactory.zoomTo(18);
+		CameraUpdate zoom = CameraUpdateFactory.zoomTo(10);
 		
 
 		if (center != null) {
@@ -215,12 +216,23 @@ public class MapFragment extends Fragment {
 
 	}
 	
+	@Override
+	public boolean onMarkerClick(Marker marker) {
+		// TODO Auto-generated method stub
+
+
+		marker.showInfoWindow();
+
+
+		return false;
+	}
+	
 	private void setUserLocationOnMap() {
 		CameraUpdate center = null;
 		center= CameraUpdateFactory.newLatLng(new LatLng(mUserLocation.getLatitude(),
 				mUserLocation.getLongitude()));			
 		
-		CameraUpdate zoom = CameraUpdateFactory.zoomTo(18);
+		CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 		
 
 		if (center != null) {
@@ -230,9 +242,7 @@ public class MapFragment extends Fragment {
 		mMap.animateCamera(zoom);
 		
 		mMap.addMarker(new MarkerOptions().position(
-				new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude())).title("ME"));
-
-		new GetDirections().execute();
+				new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude())).title("ME")).showInfoWindow();
 
 	}
 	
@@ -241,6 +251,8 @@ public class MapFragment extends Fragment {
 		PolylineOptions rectLine;
 		String sName;
 		String eName;
+		LatLng startLocation;
+		LatLng endLocation;
 		
 		@Override
 		protected Void doInBackground(String... params) {
@@ -248,6 +260,8 @@ public class MapFragment extends Fragment {
 			eName = params[1];
 			String[] sLocation = params[2].split(",");
 			String[] eLocation = params[3].split(",");
+			startLocation = new LatLng(Double.parseDouble(sLocation[0]), Double.parseDouble(sLocation[1]) );
+			endLocation = new LatLng(Double.parseDouble(eLocation[0]),  Double.parseDouble(eLocation[1]) );
 			
 			LatLng fromPosition = new LatLng(Double.parseDouble(sLocation[0])
 												, Double.parseDouble(sLocation[1]));
@@ -270,15 +284,25 @@ public class MapFragment extends Fragment {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
-			setDirections(rectLine, sName, eName);
+			setDirections(rectLine, sName, eName, startLocation, endLocation);
 		}
 		
 		
 		
 	}
 	
-	private void setDirections(PolylineOptions rectLine, String start, String end ) {
+	private void setDirections(PolylineOptions rectLine, String start, String end, LatLng startLocation, LatLng endLocation ) {
+		mMap.clear();
 		mMap.addPolyline(rectLine);
+		
+		//add start marker 
+		mMap.addMarker(new MarkerOptions().position(new LatLng(startLocation.latitude, startLocation.longitude)).title(start)).showInfoWindow();
+
+		
+		//add end marker
+		mMap.addMarker(new MarkerOptions().position(new LatLng(endLocation.latitude, endLocation.longitude)).title(end)).showInfoWindow();
+
+		
 	}
 	
  	
