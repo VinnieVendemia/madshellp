@@ -84,7 +84,7 @@ public class TriviaQuestionFragment extends Fragment {
 		// Sets Answers
 		String[] answers = questions.get(testInt-1).getAnswers();		
 		rBtn0.setText(answers[0]);
-		rBtn0.setChecked(false); // by default the first radio button is selected, This is un-selecting the radio button
+		//rBtn0.setChecked(false); // by default the first radio button is selected, This is un-selecting the radio button
 		rBtn1.setText(answers[1]);
 		rBtn2.setText(answers[2]);
 		rBtn3.setText(answers[3]);
