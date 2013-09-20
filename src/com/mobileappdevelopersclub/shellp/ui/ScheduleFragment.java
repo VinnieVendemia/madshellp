@@ -66,38 +66,39 @@ public class ScheduleFragment extends Fragment implements OnItemSelectedListener
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		this.inflater = inflater;
-		if(userInfo.getString(USERNAME, NOT_SET).equals(NOT_SET) || userInfo.getString(PASSWORD, NOT_SET).equals(NOT_SET) ) {
-			//This code should only run on 1st run of application 
-
-			view = inflater.inflate(R.layout.login_layout, null);
-			final EditText username = (EditText) view.findViewById(R.id.email_login);
-			final EditText passWord = (EditText) view.findViewById(R.id.password_login);
-			view.findViewById(R.id.submit).setOnTouchListener(new OnTouchListener(){
-
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-					String user = username.getText().toString();
-					String pass = passWord.getText().toString();
-
-
-					if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass)) {
-						SharedPreferences userInfo = getActivity().getSharedPreferences(PREFS_NAME, 0);
-						SharedPreferences.Editor editor = userInfo.edit();
-						editor.putString(USERNAME, user);
-						editor.putString(PASSWORD, pass);
-
-						editor.commit();
-						
-						testInflate();
-
-					} else {
-						Toast.makeText(mActivity, "Username or Password Not entered", Toast.LENGTH_SHORT).show();
-					}
-					return true;
-					
-				}});
-
-		} else {
+//		Schedule Feature not yet implemented 
+//		if(userInfo.getString(USERNAME, NOT_SET).equals(NOT_SET) || userInfo.getString(PASSWORD, NOT_SET).equals(NOT_SET) ) {
+//			//This code should only run on 1st run of application 
+//
+//			view = inflater.inflate(R.layout.login_layout, null);
+//			final EditText username = (EditText) view.findViewById(R.id.email_login);
+//			final EditText passWord = (EditText) view.findViewById(R.id.password_login);
+//			view.findViewById(R.id.submit).setOnTouchListener(new OnTouchListener(){
+//
+//				@Override
+//				public boolean onTouch(View v, MotionEvent event) {
+//					String user = username.getText().toString();
+//					String pass = passWord.getText().toString();
+//
+//
+//					if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(pass)) {
+//						SharedPreferences userInfo = getActivity().getSharedPreferences(PREFS_NAME, 0);
+//						SharedPreferences.Editor editor = userInfo.edit();
+//						editor.putString(USERNAME, user);
+//						editor.putString(PASSWORD, pass);
+//
+//						editor.commit();
+//						
+//						testInflate();
+//
+//					} else {
+//						Toast.makeText(mActivity, "Username or Password Not entered", Toast.LENGTH_SHORT).show();
+//					}
+//					return true;
+//					
+//				}});
+//
+//		} else {
 			setHasOptionsMenu(true);
 			view = inflater.inflate(R.layout.schedulefragment_main, null);
 
@@ -107,23 +108,23 @@ public class ScheduleFragment extends Fragment implements OnItemSelectedListener
 			mSpinner.setAdapter(mSpinnerAdapter);
 			mSpinner.setOnItemSelectedListener(this);
 //			fetchClasses();
-		}
+//		}
 		return view;
 	}
 	
-	private void testInflate(){
-		Toast.makeText(mActivity, "Trying to inflate", Toast.LENGTH_SHORT).show();
-		setHasOptionsMenu(true);
-		view = inflater.inflate(R.layout.schedulefragment_main, null);
-
-		mSpinner = (Spinner) view.findViewById(R.id.daysOfWeek);
-		mSpinnerAdapter = new ArrayAdapter<String>(Globals.actionBar.getThemedContext(),
-				android.R.layout.simple_spinner_item, android.R.id.text1, daysOfWeek);
-		mSpinner.setAdapter(mSpinnerAdapter);
-		mSpinner.setOnItemSelectedListener(this);
-		view.refreshDrawableState();
-//		fetchClasses();
-	}
+//	private void testInflate(){
+//		Toast.makeText(mActivity, "Trying to inflate", Toast.LENGTH_SHORT).show();
+//		setHasOptionsMenu(true);
+//		view = inflater.inflate(R.layout.schedulefragment_main, null);
+//
+//		mSpinner = (Spinner) view.findViewById(R.id.daysOfWeek);
+//		mSpinnerAdapter = new ArrayAdapter<String>(Globals.actionBar.getThemedContext(),
+//				android.R.layout.simple_spinner_item, android.R.id.text1, daysOfWeek);
+//		mSpinner.setAdapter(mSpinnerAdapter);
+//		mSpinner.setOnItemSelectedListener(this);
+//		view.refreshDrawableState();
+////		fetchClasses();
+//	}
 
 	public void fetchClasses() {
 		new FetchClassesTask("GET", UMDClassResponse.getUserUrl()).execute();

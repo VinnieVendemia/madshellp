@@ -3,20 +3,20 @@ package com.mobileappdevelopersclub.shellp.ui;
 import java.util.ArrayList;
 import java.util.Random;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.mobileappdevelopersclub.shellp.Questions;
 import com.mobileappdevelopersclub.shellp.R;
 import com.mobileappdevelopersclub.shellp.TakeTriviaQuiz;
+import com.mobileappdevelopersclub.shellp.TriviaResultsActivity;
+import com.mobileappdevelopersclub.shellp.models.Questions;
 
 public class TriviaQuestionFragment extends Fragment {
 
@@ -94,12 +94,21 @@ public class TriviaQuestionFragment extends Fragment {
 		//((TextView)view.findViewById(R.id.textView1)).setText("Dylan is awesome, this is the new triv frag and it swipes really cool");
 		return view;
 	}
+	
+	
+	
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		this.saveQuestionInfo();
+	}
 
 	@Override
 	public void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
-		this.saveQuestionInfo();
+		
 	}
 
 	/*@Override
@@ -143,11 +152,29 @@ public class TriviaQuestionFragment extends Fragment {
 			}
 
 			questions.get(testInt -1).setUserAnswer((String) temp.getText());
-			questions.get(testInt -1).setIsAnswerd(true);				
+			questions.get(testInt -1).setIsAnswerd(true);
+			
+//			checkIfAllQuestionsAnswered();
 
 		}
 
-		Log.d(tag, questions.get(testInt -1).getUserAnswer());
+//		Log.d(tag, questions.get(testInt -1).getUserAnswer());
 
 	}
+	
+//	private void checkIfAllQuestionsAnswered() {
+//		boolean allQuestionsAnswered = true;
+//		
+//		for(int i = 0; i < questions.size(); i++) {
+//			allQuestionsAnswered = questions.get(i).isAnswerd();
+//		}
+//		
+//		if(allQuestionsAnswered) {
+//			Intent intent = new Intent(getActivity(), TriviaResultsActivity.class );
+//			Bundle b = new Bundle();
+//			b.putParcelableArrayList("questions", questions);
+//			intent.putExtra("bundle", b);
+//			startActivity(intent);
+//		}
+//	}
 }

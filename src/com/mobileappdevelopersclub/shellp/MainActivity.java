@@ -2,6 +2,8 @@ package com.mobileappdevelopersclub.shellp;
 
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,9 +12,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.PopupMenu.OnMenuItemClickListener;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
 	JazzyViewPager mJazzy;
 	ShellpFragmentPagerAdapter mPagerAdapter;
 	ActionBar actionBar;
+	Activity mActivity;
 //	private PullToRefreshAttacher mPullToRefreshAttacher;
 
 	@Override
@@ -35,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 		Globals.mgr = getSupportFragmentManager();
 		Globals.actionBar = getSupportActionBar();
+		mActivity = this;
 		actionBar = getSupportActionBar();
 		mPagerAdapter = new ShellpFragmentPagerAdapter(getSupportFragmentManager());
 		setupJazziness(TransitionEffect.Tablet);
@@ -93,17 +97,18 @@ public class MainActivity extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		
-		MenuItem extrasItem = menu.findItem(R.id.action_extras);
+//		MenuItem extrasItem = menu.findItem(R.id.action_extras);
 //		extrasItem.setOnMenuItemClickListener(new OnMenuItemClickListener(){
 //
 //			@Override
 //			public boolean onMenuItemClick(MenuItem arg0) {
-//				// TODO Auto-generated method stub
+//				Intent intent = new Intent(mActivity, TakeTriviaQuiz.class);
+//				startActivity(intent);
 //				return false;
 //			}
 //			
 //		});
-//		
+		
 		return true;
 	}
 

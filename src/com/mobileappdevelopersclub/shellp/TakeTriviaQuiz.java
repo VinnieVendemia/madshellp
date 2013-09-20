@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.mobileappdevelopersclub.shellp.Questions;
 import com.mobileappdevelopersclub.shellp.MainActivity.ShellpFragmentPagerAdapter;
+import com.mobileappdevelopersclub.shellp.models.Questions;
 import com.mobileappdevelopersclub.shellp.ui.AboutUsFragment;
 import com.mobileappdevelopersclub.shellp.ui.HomeTriviaFragment;
 import com.mobileappdevelopersclub.shellp.ui.MainFragment;

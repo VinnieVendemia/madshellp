@@ -29,7 +29,7 @@ public class HomeTriviaFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		View view = inflater.inflate(R.layout.trivia_home_fragment,  container, false);
+		View view = inflater.inflate(R.layout.trivia_game_frag,  container, false);
 		//((TextView)view.findViewById(R.id.textView1)).setText("Dylan is awesome, this is the new triv frag and it swipes really cool");
 		return view;
 	}	
