@@ -52,11 +52,9 @@
     <string name="group_name">Mobile App Developers Club</string>
     <string name="group_name_abbrv">M.A.D.</string>
     <string name="twitter_handle">\@MADterps</string>
-    <string name="facebook_label">Find us on facebook</string>
     <string name="facebook_title">UMCP Mobile App Developers</string>
     <string name="email">mobileappdevelopersclub\@gmail.com</string>
     <string name="web_url">mobileappdevelopersclub.com</string>
-    <string name="gplus_label">Follow us on Google+</string>
     <string name="google_plus">UMD Mobile App Developers</string>
     
 </resources>

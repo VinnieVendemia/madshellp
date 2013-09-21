@@ -36,19 +36,6 @@ public class TriviaGameFrag extends Fragment {
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		View view = inflater.inflate(R.layout.trivia_game_frag,  container, false);
-		//start = (ImageButton) findViewById(R.id.imageButton1);
-		
-		((Button)view.findViewById(R.id.Bstart)).setOnClickListener(new OnClickListener(){
-			
-			public void onClick(View V) {
-				Intent intent = new Intent(getActivity(), TakeTriviaQuiz.class);
-				startActivity(intent);
-			}
-		});
-		
-		
-		
-		//((TextView)view.findViewById(R.id.textView1)).setText("Dylan is awesome, this is the new triv frag and it swipes really cool");
 		return view;
 	}	
 }

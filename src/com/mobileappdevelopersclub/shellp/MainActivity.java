@@ -18,6 +18,7 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mobileappdevelopersclub.shellp.ui.AboutUsActivity;
 import com.mobileappdevelopersclub.shellp.ui.MainFragment;
 import com.mobileappdevelopersclub.shellp.ui.ScheduleFragment;
 import com.mobileappdevelopersclub.shellp.ui.WeatherFragment;
@@ -114,7 +115,7 @@ public class MainActivity extends ActionBarActivity {
 
 			@Override
 			public boolean onMenuItemClick(MenuItem arg0) {
-				Intent intent = new Intent(mActivity, TakeTriviaQuiz.class);
+				Intent intent = new Intent(mActivity, AboutUsActivity.class);
 				startActivity(intent);
 				return false;
 			}
