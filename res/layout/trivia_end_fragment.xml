@@ -5,11 +5,5 @@
     android:layout_height="match_parent"
     android:background="@drawable/trivia_end_background">
     
-  	<Button 
-  	    android:id="@+id/getResults"
-  	    android:layout_width="wrap_content"
-  	    android:layout_height="wrap_content"
-  	    android:layout_centerInParent="true"
-  	    android:text="Check Your Answers"/>
 
 </RelativeLayout>

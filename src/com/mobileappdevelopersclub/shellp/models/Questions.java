@@ -2,7 +2,6 @@ package com.mobileappdevelopersclub.shellp.models;
 
 import java.util.Arrays;
 import java.util.Collections;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -25,8 +24,15 @@ public class Questions implements Parcelable {
 
             this.correctAns= temp[4];
     }
+    
+    
 
-    public String getQuestion() {
+    @Override
+	public boolean equals(Object o) {
+		return this.question.equals(((Questions)o).question);
+	}
+
+	public String getQuestion() {
             return question;
     }
 
@@ -82,15 +88,28 @@ public class Questions implements Parcelable {
 
 	@Override
 	public int describeContents() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public static final Parcelable.Creator<Questions> CREATOR = new Parcelable.Creator<Questions>() {
+
+		@Override
+		public Questions createFromParcel(Parcel source) {
+			return new Questions(source);
+		}
+
+
+		@Override
+		public Questions[] newArray(int size) {
+			return new Questions[size];
+		}
+	};
 	
 	public Questions(Parcel in) {
 		question = in.readString();
 		correctAns = in.readString();
 		userAnswer = in.readString();
-		in.readStringArray(answers);
+		answers = in.createStringArray();
 		isAnswerd = in.readByte() == 1 ? true : false;
 		answerdCorrectly = in.readByte() == 1 ? true : false;
 	}

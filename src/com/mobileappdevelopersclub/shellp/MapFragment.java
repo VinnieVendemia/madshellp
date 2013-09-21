@@ -62,23 +62,27 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 	private final String TWO_FLAG = "two";
 	private final String THREE_FLAG = "three";
 	
-	
-	public static GoogleMap mMap;
 	View view;
+	public static GoogleMap mMap;
+	private Marker mUserMarker;
+	private Context mContext;
+	
 	AutoCompleteTextView startLocationField;
 	AutoCompleteTextView locationOneField;
 	AutoCompleteTextView locationTwoField;
 	AutoCompleteTextView locationThreeField;
+	
 	ImageView searchIcon;
 	ImageView mStartMapPin;
 	ImageView mEndMapPin;
+	
 	Drawable mRedMapPin;
 	Drawable mYellowMapPin;
 	Drawable mGreenMapPin;
 	Drawable mBlueMapPin;
+	
 	LinearLayout mEnterLocationsLayout;
 	FrameLayout mAddMoreLocations;
-	private Context mContext;
 	Location mUserLocation;
 	ArrayAdapter<String> buildingNamesAdapter;
 	//TODO: Change to <String,LatLng> map
@@ -390,11 +394,15 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 
 		mMap.animateCamera(zoom);
 
-		//Set User Location as 
-		mMap.addMarker(new MarkerOptions().position(
-				new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude())).title("ME").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))).showInfoWindow();
+		if(mUserMarker != null) {
+			//if user already marked location, remove and add again
+			mUserMarker.remove();
+		}
 
-
+		//Set Users current location
+		mUserMarker = mMap.addMarker(new MarkerOptions().position(
+				new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude())).title("ME").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+		
 		addUserLocationToBuildingsMap();
 
 	}

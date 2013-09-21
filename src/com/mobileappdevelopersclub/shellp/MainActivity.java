@@ -97,17 +97,29 @@ public class MainActivity extends ActionBarActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		
-//		MenuItem extrasItem = menu.findItem(R.id.action_extras);
-//		extrasItem.setOnMenuItemClickListener(new OnMenuItemClickListener(){
-//
-//			@Override
-//			public boolean onMenuItemClick(MenuItem arg0) {
-//				Intent intent = new Intent(mActivity, TakeTriviaQuiz.class);
-//				startActivity(intent);
-//				return false;
-//			}
-//			
-//		});
+		MenuItem extrasItem = menu.findItem(R.id.action_extras);
+		extrasItem.setOnMenuItemClickListener(new OnMenuItemClickListener(){
+
+			@Override
+			public boolean onMenuItemClick(MenuItem arg0) {
+				Intent intent = new Intent(mActivity, TakeTriviaQuiz.class);
+				startActivity(intent);
+				return false;
+			}
+			
+		});
+		
+		MenuItem aboutItem = menu.findItem(R.id.action_about);
+		aboutItem.setOnMenuItemClickListener(new OnMenuItemClickListener(){
+
+			@Override
+			public boolean onMenuItemClick(MenuItem arg0) {
+				Intent intent = new Intent(mActivity, TakeTriviaQuiz.class);
+				startActivity(intent);
+				return false;
+			}
+			
+		});
 		
 		return true;
 	}

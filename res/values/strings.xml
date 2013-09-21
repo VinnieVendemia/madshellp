@@ -4,6 +4,7 @@
     <string name="app_name">Shellp</string>
     <string name="action_settings">Settings</string>
     <string name="action_extras">Extras</string>
+    <string name="action_about">About Us</string>
 
     <string-array name="jazzy_effects">
         <item>Standard</item>
@@ -36,8 +37,26 @@
     <string name="Thursday">Thursday</string>
     <string name="Friday">Friday</string>
     <string name="In_Production">This feature is currently in production.  Update is coming soon.</string>
-    <string name="title_activity_trivia_results">TriviaResultsActivity</string>
-    
+    <string name="title_activity_trivia_results">Your Results</string>
+     <string name="title_activity_about_us">About Us</string>
     <string name="tap_to_add">tap to add another field</string>
-
+    
+    
+    <string name="question_tag">Question: </string>
+    <string name="user_answer_tag">You Answered: </string>
+    <string name="answer_status_tag">Your Answer was: </string>
+    <string name="you_answered_label">You Answered </string>
+    <string name="out_of_label">correctly out of 10</string>
+    
+    <string name="designed_by">Designed by the University of Maryland\'s</string>
+    <string name="group_name">Mobile App Developers Club</string>
+    <string name="group_name_abbrv">M.A.D.</string>
+    <string name="twitter_handle">\@MADterps</string>
+    <string name="facebook_label">Find us on facebook</string>
+    <string name="facebook_title">UMCP Mobile App Developers</string>
+    <string name="email">mobileappdevelopersclub\@gmail.com</string>
+    <string name="web_url">mobileappdevelopersclub.com</string>
+    <string name="gplus_label">Follow us on Google+</string>
+    <string name="google_plus">UMD Mobile App Developers</string>
+    
 </resources>

@@ -5,4 +5,7 @@
     <color name="mid_heat">#FA8072</color>
     <color name="mid_cool">#ADEAEA</color>
     <color name="cold_blue">#00688B</color>
+    <color name="correct_green">#00CC00</color>
+    <color name="incorrect_red">#FF0000</color>
+    
 </resources>

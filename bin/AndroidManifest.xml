@@ -54,8 +54,13 @@
             android:value="@string/google_maps_debug_key" />
 
         <activity
-            android:name="com.mobileappdevelopersclub.shellp.TriviaResultsActivity"
+            android:name="com.mobileappdevelopersclub.shellp.ui.TriviaResultsActivity"
             android:label="@string/title_activity_trivia_results" >
+        </activity>
+        
+           <activity
+            android:name="com.mobileappdevelopersclub.shellp.ui.AboutUsActivity"
+            android:label="@string/title_activity_about_us" >
         </activity>
     </application>
 

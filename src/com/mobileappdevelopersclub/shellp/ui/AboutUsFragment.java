@@ -29,7 +29,7 @@ public class AboutUsFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
-		View view = inflater.inflate(R.layout.about_us_fragment,  container, false);
+		View view = inflater.inflate(R.layout.about_us,  container, false);
 		//((TextView)view.findViewById(R.id.textView1)).setText("Dylan is awesome, this is the new triv frag and it swipes really cool");
 		return view;
 	}	
