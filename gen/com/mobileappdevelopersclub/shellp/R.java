@@ -1219,13 +1219,14 @@ containing a value of this type.
         public static final int schedule_indicator_left=0x7f020089;
         public static final int schedule_indicator_right=0x7f02008a;
         public static final int settings=0x7f02008b;
-        public static final int start=0x7f02008c;
-        public static final int trivia_background=0x7f02008d;
-        public static final int trivia_end_background=0x7f02008e;
-        public static final int trivia_question_background=0x7f02008f;
-        public static final int trivia_start_background=0x7f020090;
-        public static final int twitter=0x7f020091;
-        public static final int weather_background=0x7f020092;
+        public static final int shellp_beta_logo=0x7f02008c;
+        public static final int start=0x7f02008d;
+        public static final int trivia_background=0x7f02008e;
+        public static final int trivia_end_background=0x7f02008f;
+        public static final int trivia_question_background=0x7f020090;
+        public static final int trivia_start_background=0x7f020091;
+        public static final int twitter=0x7f020092;
+        public static final int weather_background=0x7f020093;
     }
     public static final class id {
         public static final int accordion=0x7f06002a;

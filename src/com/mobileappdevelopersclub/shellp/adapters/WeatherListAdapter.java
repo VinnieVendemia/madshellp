@@ -1,5 +1,6 @@
 package com.mobileappdevelopersclub.shellp.adapters;
 
+import java.util.Collection;
 import java.util.List;
 
 import android.content.Context;
@@ -28,9 +29,10 @@ public class WeatherListAdapter extends ArrayAdapter<Weather>{
 		//		imageLoader = new ImageLoader();
 
 	}
-
-
-
+	
+	public void addAll(Collection<? extends Weather> collection) {
+		mWeatherList.addAll(collection);
+	}
 
 
 	@Override
