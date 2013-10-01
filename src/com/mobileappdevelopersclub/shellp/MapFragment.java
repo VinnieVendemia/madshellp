@@ -1,11 +1,15 @@
 package com.mobileappdevelopersclub.shellp;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.w3c.dom.Document;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -19,7 +23,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -43,6 +46,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.gson.Gson;
+import com.mobileappdevelopersclub.shellp.models.Building;
+import com.mobileappdevelopersclub.shellp.models.BuildingsResponse;
 import com.mobileappdevelopersclub.shellp.transactions.GMapV2Direction;
 
 
@@ -85,11 +91,11 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 	FrameLayout mAddMoreLocations;
 	Location mUserLocation;
 	ArrayAdapter<String> buildingNamesAdapter;
-	//TODO: Change to <String,LatLng> map
-	HashMap <String,String> buildingsMap;
+	HashMap <String , Building> buildingsMap;
 	ImageView getUserLocIcon;
 	LayoutInflater mInflater;
 	int numOfExtraLocationFields = 0;
+	List<Building> mBuildings;
 
 
 	public static MapFragment newInstance(int testInt) {
@@ -103,22 +109,7 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 		super.onCreate(savedInstanceState);
 		mContext = getActivity();
 
-		Resources res = getResources();
-		//Must use an arraylist for the arrayadapter, otherwise will get unsupported operation exception
-		ArrayList<String> namesAdapterArray = new ArrayList<String>();
-
-		String[] buildingNames = res.getStringArray(R.array.bldg_names);
-		String[] buildingLocations = res.getStringArray(R.array.bldg_location);        
-
-		buildingsMap = new HashMap<String,String> ();
-
-		for(int i = 0; i < buildingNames.length; i ++) {
-			buildingsMap.put(buildingNames[i] , buildingLocations[i] );
-			namesAdapterArray.add(buildingNames[i]);
-		}
-
-		buildingNamesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, namesAdapterArray);
-
+		fetchMapData();
 		createMapPins();
 	}
 
@@ -155,22 +146,17 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 				String startName = startLocationField.getText().toString();
 				String locationOneName = locationOneField.getText().toString();
 
-				//long-lat of start
-				String sLocation = buildingsMap.get(startName);
-				//long-lat of end
-				String locationOne = buildingsMap.get(locationOneName);
-
-				if(sLocation != null && locationOne != null) {
+				if( !TextUtils.isEmpty(startName) && !TextUtils.isEmpty(locationOneName)) {
 					mMap.clear();
-					new GetDirections().execute(startName, locationOneName, sLocation, locationOne, START_FLAG, ONE_FLAG);
+					new GetDirections().execute(startName, locationOneName, START_FLAG, ONE_FLAG);
 				} else {
 					Toast.makeText(getActivity(), "Could not perform search", Toast.LENGTH_SHORT).show();
 				}
 				
-				checkLocationTwoField(locationOneName, locationOne);
+				checkLocationTwoField(locationOneName);
 				
 
-				return false;
+				return true;
 			}
 
 		});
@@ -200,23 +186,21 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 		return view;
 	}
 	
-	private void checkLocationTwoField(String locationName, String locationLatLng) {
+	private void checkLocationTwoField(String locationName) {
 		if(locationTwoField != null ) {
 			String extraLocationName = locationTwoField.getText().toString();
-			String extraLocationLatLng = buildingsMap.get(extraLocationName);
-			if(extraLocationLatLng != null) {
-				new GetDirections().execute(locationName, extraLocationName, locationLatLng, extraLocationLatLng, ONE_FLAG, TWO_FLAG);
-				checkLocationThreeField(extraLocationName, extraLocationLatLng);
+			if(!TextUtils.isEmpty(extraLocationName)) {
+				new GetDirections().execute(locationName, extraLocationName, ONE_FLAG, TWO_FLAG);
+				checkLocationThreeField(extraLocationName);
 			}
 		}
 	}
 	
-	private void checkLocationThreeField(String locationName, String locationLatLng) {
+	private void checkLocationThreeField(String locationName) {
 		if(locationThreeField != null ) {
 			String extraLocationName = locationThreeField.getText().toString();
-			String extraLocationLatLng = buildingsMap.get(extraLocationName);
-			if(extraLocationLatLng != null) {
-				new GetDirections().execute(locationName, extraLocationName, locationLatLng, extraLocationLatLng, TWO_FLAG, THREE_FLAG);
+			if(!TextUtils.isEmpty(extraLocationName)) {
+				new GetDirections().execute(locationName, extraLocationName ,TWO_FLAG, THREE_FLAG);
 			}
 		}
 	}
@@ -243,7 +227,65 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 		}
 
 	}
+	
+	private void fetchMapData() {
+		Gson gson = new Gson();
+		String json = null;
+		try {
+			json = parseAsString("buildings.json");
+		} catch (IOException e) {
+			Log.e(TAG, "Could not parse  JSON to string");
+		}
 
+		BuildingsResponse response = gson.fromJson(json, BuildingsResponse.class);
+
+		mBuildings = response.getBuildings();
+		
+		for(int i=0; i < mBuildings.size(); i++) {
+			Log.d(TAG, "x: " + mBuildings.get(i).getxCoord() + " y: " + mBuildings.get(i).getyCoord());
+		}
+		
+		addMapDataToTextViews();
+	}
+	
+	private void addMapDataToTextViews() {
+		Resources res = getResources();
+		//Must use an arraylist for the arrayadapter, otherwise will get unsupported operation exception
+		ArrayList<String> namesAdapterArray = new ArrayList<String>();  
+
+		buildingsMap = new HashMap<String , Building>();
+ 
+		for(int i = 0; i < mBuildings.size(); i ++) {
+			Building curr = mBuildings.get(i);
+			buildingsMap.put(curr.getBuildingNameLong() , curr );
+			buildingsMap.put(curr.getBuildingNameShort(), curr);
+			buildingsMap.put(curr.getBuildingNumber(), curr);
+			namesAdapterArray.add(curr.getBuildingNameLong());
+			namesAdapterArray.add(curr.getBuildingNameShort());
+			namesAdapterArray.add(curr.getBuildingNumber());
+		}
+
+		buildingNamesAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, namesAdapterArray);
+	}
+	
+	public String parseAsString(String filename) throws IOException {
+
+		AssetManager assetManager = getActivity().getAssets();
+
+		InputStream in = assetManager.open(filename);
+
+		int size = in.available();
+		byte[] buffer = new byte[size];
+
+		in.read(buffer);
+		in.close();
+
+		String fileAsString = new String(buffer);
+
+		return fileAsString;
+
+	}
+	
 	private void createMapPins() {
 
 		//make a blue pin
@@ -398,23 +440,27 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 			//if user already marked location, remove and add again
 			mUserMarker.remove();
 		}
-
-		//Set Users current location
-		mUserMarker = mMap.addMarker(new MarkerOptions().position(
-				new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude())).title("ME").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 		
-		addUserLocationToBuildingsMap();
+		LatLng userLoc = new LatLng(mUserLocation.getLatitude(), mUserLocation.getLongitude());
+		//Set Users current location
+		mUserMarker = mMap.addMarker(new MarkerOptions().position(userLoc)
+				.title("ME").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+		
+		
+		
+		
+		addUserLocationToBuildingsMap(userLoc);
 
 	}
 
-	private void addUserLocationToBuildingsMap() {
+	private void addUserLocationToBuildingsMap(LatLng userLoc) {
 
-		StringBuilder sb = new StringBuilder();
-		sb.append(Double.toString(mUserLocation.getLatitude()));
-		sb.append(",");
-		sb.append(Double.toString(mUserLocation.getLongitude()));
-
-		String prevMapping = buildingsMap.put(CURRENT_LOC , sb.toString());
+		
+		//create a "Building" in the form of the user 
+		Building userBuilding = new Building("000", Double.toString(userLoc.latitude), 
+				Double.toString(userLoc.longitude), CURRENT_LOC, CURRENT_LOC );
+		
+		Building prevMapping = buildingsMap.put(CURRENT_LOC , userBuilding);
 		if(prevMapping == null) {
 			//There was no previous mapping for current loc, add to the list of search options
 			buildingNamesAdapter.add(CURRENT_LOC);
@@ -436,21 +482,17 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 		protected Void doInBackground(String... params) {
 			sName = params[0];
 			eName = params[1];
-			String[] sLocation = params[2].split(",");
-			String[] eLocation = params[3].split(",");
-			pinFlags[0] = params[4];
-			pinFlags[1] = params[5];
-			startLocation = new LatLng(Double.parseDouble(sLocation[0]), Double.parseDouble(sLocation[1]) );
-			endLocation = new LatLng(Double.parseDouble(eLocation[0]),  Double.parseDouble(eLocation[1]) );
+			pinFlags[0] = params[2];
+			pinFlags[1] = params[3];
+			startLocation = buildingsMap.get(sName).getBuildingLatLng();
+			endLocation = buildingsMap.get(eName).getBuildingLatLng();
 
-			LatLng fromPosition = new LatLng(Double.parseDouble(sLocation[0])
-					, Double.parseDouble(sLocation[1]));
-			LatLng toPosition =	new LatLng(Double.parseDouble(eLocation[0])
-					, Double.parseDouble(eLocation[1]));
-
+			Log.d(TAG, " In Do In Background " + startLocation.toString());
+			Log.d(TAG, endLocation.toString());
+			
 			GMapV2Direction md = new GMapV2Direction();
 
-			Document doc = md.getDocument(fromPosition, toPosition, GMapV2Direction.MODE_WALKING);
+			Document doc = md.getDocument(startLocation, endLocation, GMapV2Direction.MODE_WALKING);
 			ArrayList<LatLng> directionPoint = md.getDirection(doc);
 			rectLine = new PolylineOptions().width(7).color(Color.RED);
 
@@ -464,6 +506,8 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 		@Override
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
+ 			Log.d(TAG, "in on post execute" + startLocation.toString());
+			Log.d(TAG, endLocation.toString());
 			setDirections(rectLine, sName, eName, startLocation, endLocation, pinFlags);
 		}
 
@@ -473,25 +517,26 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 
 	private void setDirections(PolylineOptions rectLine, String start, String end, LatLng startLocation, LatLng endLocation, String[] pinFlags ) {
 		mMap.addPolyline(rectLine);
+		 
 		
-		
-		
+		Log.d(TAG, "In Set Directions: " + startLocation.toString());
+		Log.d(TAG, endLocation.toString());
 
 		//add start marker
 		if(!start.equals(CURRENT_LOC)) {
 			//if !start is user loc, then add a marker at this pos
 			String pinFlag = pinFlags[0];
 			if(pinFlag.equals(START_FLAG)) {
-				mMap.addMarker(new MarkerOptions().position(new LatLng(startLocation.latitude, startLocation.longitude))
+				mMap.addMarker(new MarkerOptions().position(startLocation)
 						.title(start).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
 			} else if (pinFlag.equals(ONE_FLAG)) {
-				mMap.addMarker(new MarkerOptions().position(new LatLng(startLocation.latitude, startLocation.longitude))
+				mMap.addMarker(new MarkerOptions().position(startLocation)
 						.title(start).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 			} else if(pinFlag.equals(TWO_FLAG)) {
-				mMap.addMarker(new MarkerOptions().position(new LatLng(startLocation.latitude, startLocation.longitude))
+				mMap.addMarker(new MarkerOptions().position(startLocation)
 						.title(start).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 			} else {
-				mMap.addMarker(new MarkerOptions().position(new LatLng(startLocation.latitude, startLocation.longitude))
+				mMap.addMarker(new MarkerOptions().position(startLocation)
 						.title(start).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 			}
 		}
@@ -501,16 +546,16 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 			//if !end is user loc, then add a marker at this pos
 			String pinFlag = pinFlags[1];
 			if(pinFlag.equals(START_FLAG)) {
-				mMap.addMarker(new MarkerOptions().position(new LatLng(endLocation.latitude, endLocation.longitude))
+				mMap.addMarker(new MarkerOptions().position(endLocation)
 						.title(end).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
 			} else if (pinFlag.equals(ONE_FLAG)) {
-				mMap.addMarker(new MarkerOptions().position(new LatLng(endLocation.latitude, endLocation.longitude))
+				mMap.addMarker(new MarkerOptions().position(endLocation)
 						.title(end).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 			} else if(pinFlag.equals(TWO_FLAG)) {
-				mMap.addMarker(new MarkerOptions().position(new LatLng(endLocation.latitude, endLocation.longitude))
+				mMap.addMarker(new MarkerOptions().position(endLocation)
 						.title(end).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
 			} else {
-				mMap.addMarker(new MarkerOptions().position(new LatLng(endLocation.latitude, endLocation.longitude))
+				mMap.addMarker(new MarkerOptions().position(endLocation)
 						.title(end).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 			}
 		}
