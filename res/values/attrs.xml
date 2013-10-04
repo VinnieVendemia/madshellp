@@ -21,6 +21,6 @@
         <attr name="outlineColor" format="color|reference" />
     </declare-styleable>
     
-    <dimen name="one_hour_increment">5dp</dimen>
+    <dimen name="one_hour_increment">6dp</dimen>
 
 </resources>

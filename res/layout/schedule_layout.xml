@@ -22,13 +22,7 @@
             android:layout_weight=".85"
             android:orientation="vertical" >
             
-            <TextView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingTop="200dp"
-                android:text="@string/In_Production"
-                android:textSize="16sp"/>
+      
         </LinearLayout>
     </LinearLayout>
 

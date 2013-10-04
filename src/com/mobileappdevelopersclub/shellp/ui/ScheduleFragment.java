@@ -48,6 +48,7 @@ public class ScheduleFragment extends Fragment implements OnItemSelectedListener
 	private Spinner mSpinner;
 	SharedPreferences userInfo;
 	LayoutInflater inflater;
+	private List<UMDClass> mClasses;
 
 	public static ScheduleFragment newInstance() {
 		ScheduleFragment fragment = new ScheduleFragment();
@@ -154,12 +155,13 @@ public class ScheduleFragment extends Fragment implements OnItemSelectedListener
 
 	private void onClassesFound(List<UMDClass> classes) {
 		//TODO: Add classes to the view
+		mClasses = classes;
 	}
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long arg3) {
 		FragmentManager fm = getFragmentManager();
-		fm.beginTransaction().replace(R.id.schedule, DailyScheduleFragment.newInstance(position)).commit();
+		fm.beginTransaction().replace(R.id.schedule, DailyScheduleFragment.newInstance(position, mClasses)).commit();
 	}
 
 	@Override
