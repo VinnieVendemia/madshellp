@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.w3c.dom.Document;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
@@ -81,6 +82,7 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 	ImageView searchIcon;
 	ImageView mStartMapPin;
 	ImageView mEndMapPin;
+	ImageView mExpandMapIcon;
 	
 	Drawable mRedMapPin;
 	Drawable mYellowMapPin;
@@ -89,6 +91,8 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 	
 	LinearLayout mEnterLocationsLayout;
 	FrameLayout mAddMoreLocations;
+	FrameLayout mMapFrame;
+	
 	Location mUserLocation;
 	ArrayAdapter<String> buildingNamesAdapter;
 	HashMap <String , Building> buildingsMap;
@@ -123,7 +127,10 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 		mAddMoreLocations = (FrameLayout)view.findViewById(R.id.addMoreLocations);
 		mStartMapPin = (ImageView)view.findViewById(R.id.startMapPin);
 		mEndMapPin = (ImageView)view.findViewById(R.id.endMapPin);
-
+		mExpandMapIcon = (ImageView)view.findViewById(R.id.expandMapIcon);
+		mMapFrame = (FrameLayout) view.findViewById(R.id.mapFrame);
+		
+		
 		mStartMapPin.setImageDrawable(mBlueMapPin);
 		mEndMapPin.setImageDrawable(mRedMapPin);
 
@@ -181,6 +188,17 @@ public class MapFragment extends Fragment implements OnMarkerClickListener {
 				return false;
 			}
 
+		});
+		
+		mExpandMapIcon.setOnTouchListener(new OnTouchListener(){
+
+			@SuppressLint("NewApi")
+			@Override
+			public boolean onTouch(View arg0, MotionEvent arg1) {
+				mMapFrame.animate().y(-300);
+				return false;
+			}
+			
 		});
 
 		return view;

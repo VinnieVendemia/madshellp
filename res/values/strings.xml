@@ -39,7 +39,7 @@
     <string name="In_Production">This feature is currently in production.  Update is coming soon.</string>
     <string name="title_activity_trivia_results">Your Results</string>
      <string name="title_activity_about_us">About Us</string>
-    <string name="tap_to_add">tap to add another field</string>
+    <string name="tap_to_add">tap to search another location</string>
     
     
     <string name="question_tag">Question: </string>

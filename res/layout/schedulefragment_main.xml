@@ -3,7 +3,7 @@
     android:id="@+id/scheduleLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/hot_red"
+    android:background="@drawable/schedule_background"
     android:orientation="vertical" >
 
     <Spinner

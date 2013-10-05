@@ -12,17 +12,17 @@ public final class R {
 		public static final int fade_out = 0x7f040007;
 	}
 	public static final class drawable {
-		public static final int ptr_progress_horizontal_holo_center = 0x7f020082;
-		public static final int ptr_progress_indeterminate_horizontal_holo = 0x7f020083;
-		public static final int ptr_progress_primary_holo = 0x7f020084;
-		public static final int ptr_progressbar_indeterminate_holo1 = 0x7f020085;
-		public static final int ptr_progressbar_indeterminate_holo2 = 0x7f020086;
-		public static final int ptr_progressbar_indeterminate_holo3 = 0x7f020087;
-		public static final int ptr_progressbar_indeterminate_holo4 = 0x7f020088;
-		public static final int ptr_progressbar_indeterminate_holo5 = 0x7f020089;
-		public static final int ptr_progressbar_indeterminate_holo6 = 0x7f02008a;
-		public static final int ptr_progressbar_indeterminate_holo7 = 0x7f02008b;
-		public static final int ptr_progressbar_indeterminate_holo8 = 0x7f02008c;
+		public static final int ptr_progress_horizontal_holo_center = 0x7f020086;
+		public static final int ptr_progress_indeterminate_horizontal_holo = 0x7f020087;
+		public static final int ptr_progress_primary_holo = 0x7f020088;
+		public static final int ptr_progressbar_indeterminate_holo1 = 0x7f020089;
+		public static final int ptr_progressbar_indeterminate_holo2 = 0x7f02008a;
+		public static final int ptr_progressbar_indeterminate_holo3 = 0x7f02008b;
+		public static final int ptr_progressbar_indeterminate_holo4 = 0x7f02008c;
+		public static final int ptr_progressbar_indeterminate_holo5 = 0x7f02008d;
+		public static final int ptr_progressbar_indeterminate_holo6 = 0x7f02008e;
+		public static final int ptr_progressbar_indeterminate_holo7 = 0x7f02008f;
+		public static final int ptr_progressbar_indeterminate_holo8 = 0x7f020090;
 	}
 	public static final class id {
 		public static final int ptr_content = 0x7f070005;
