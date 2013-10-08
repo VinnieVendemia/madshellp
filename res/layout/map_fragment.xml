@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/schedule_background"
+    android:background="@drawable/white_textured_background"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -74,7 +74,7 @@
             android:id="@+id/addMoreLocations"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:background="@drawable/schedule_background" >
+            android:background="@drawable/white_textured_background" >
 
             <TextView
                 android:layout_width="wrap_content"

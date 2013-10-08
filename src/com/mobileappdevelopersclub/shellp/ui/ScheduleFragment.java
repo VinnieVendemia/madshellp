@@ -98,6 +98,7 @@ public class ScheduleFragment extends Fragment implements OnItemSelectedListener
 		view = inflater.inflate(R.layout.schedulefragment_main, null);
 
 		mSpinner = (Spinner) view.findViewById(R.id.daysOfWeek);
+		//TODO: custom spinner adapter 
 		mSpinnerAdapter = new ArrayAdapter<String>(Globals.actionBar.getThemedContext(),
 				android.R.layout.simple_spinner_item, android.R.id.text1, Constants.daysOfWeek);
 		mSpinner.setAdapter(mSpinnerAdapter);

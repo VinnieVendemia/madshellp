@@ -7,5 +7,6 @@
     <color name="cold_blue">#00688B</color>
     <color name="correct_green">#00CC00</color>
     <color name="incorrect_red">#FF0000</color>
+    <color name="pastel_blue">#81C0C5</color>
     
 </resources>
